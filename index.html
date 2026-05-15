@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allen Usubov — Art Direction & Design</title>
+<meta name="description" content="Allen Usubov — Art Director & Designer, New York City">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --text: #1d1d1f;
+    --sub: #86868b;
+    --rule: #e5e5ea;
+    --bg: #f2f1f6;
+    --card: #ffffff;
+    --accent: #007aff;
+    --link: #0066cc;
+    --ff: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --radius: 16px;
+    --nav-bg: rgba(242,241,246,0.8);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f5f5f7;
+      --sub: #98989d;
+      --rule: #38383a;
+      --bg: #1c1c1e;
+      --card: #2c2c2e;
+      --accent: #0a84ff;
+      --link: #4da3ff;
+      --nav-bg: rgba(28,28,30,0.8);
+    }
+  }
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--ff); color: var(--text); -webkit-font-smoothing: antialiased; background: var(--bg); }
+  button { font-family: var(--ff); cursor: pointer; border: none; background: none; color: var(--text); }
+
+  /* ── Nav ── */
+  .nav { position: sticky; top: 0; z-index: 100; backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); background: var(--nav-bg); border-bottom: 1px solid var(--rule); padding: 0 48px; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-name { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; opacity: 0; transition: opacity 0.3s; }
+  .nav-email { font-size: 13px; color: var(--link); opacity: 0; transition: opacity 0.3s; }
+  .nav-email a { color: var(--link); text-decoration: none; }
+  .nav-email a:hover { opacity: 0.7; }
+  .nav.scrolled .nav-name, .nav.scrolled .nav-email { opacity: 1; }
+
+  /* ── iOS Toggle Switch ── */
+  .toggle-wrap { position: relative; width: 240px; height: 36px; background: var(--bg); border-radius: 18px; padding: 3px; display: flex; border: 0.5px solid var(--rule); }
+  .toggle-slider { position: absolute; top: 3px; left: 3px; width: calc(50% - 3px); height: 30px; background: var(--card); border-radius: 15px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .toggle-wrap.portfolio .toggle-slider { transform: translateX(100%); }
+  .toggle-btn { flex: 1; padding: 0; font-size: 14px; font-weight: 500; color: var(--sub); border-radius: 15px; transition: color 0.2s; text-transform: capitalize; letter-spacing: -0.01em; position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
+  .toggle-btn.active { color: var(--text); font-weight: 600; }
+
+  /* ── Hero ── */
+  .hero { max-width: 820px; margin: 0 auto; padding: 80px 48px 0; text-align: center; }
+  .hero-card { background: var(--card); border-radius: var(--radius); padding: 40px 32px 32px; }
+  .hero h1 { font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; }
+  .hero-links { margin-top: 16px; font-size: 17px; color: var(--sub); display: flex; align-items: center; justify-content: center; gap: 20px; }
+  .hero-links a { color: var(--link); text-decoration: none; transition: opacity 0.15s; display: flex; align-items: center; gap: 6px; }
+  .hero-links a:hover { opacity: 0.7; }
+  .hero-icon { width: 16px; height: 16px; opacity: 0.5; }
+  .content { max-width: 820px; margin: 0 auto; padding: 60px 48px 100px; }
+
+  /* ── About ── */
+  .about-card { background: var(--card); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 24px; }
+  .section-label { font-size: 11px; font-weight: 600; color: var(--sub); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .about-text { font-size: 15px; line-height: 1.6; color: var(--sub); }
+
+  .section-title { font-size: 12px; font-weight: 600; color: var(--sub); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; margin-top: 24px; }
+
+  /* ── Experience ── */
+  .exp-card { background: var(--card); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; cursor: pointer; transition: all 0.2s; }
+  .exp-row { display: flex; align-items: center; gap: 16px; }
+  .exp-logo { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; border: 0.5px solid var(--rule); }
+  .exp-logo img { width: 100%; height: 100%; object-fit: contain; }
+  .exp-info { flex: 1; min-width: 0; }
+  .exp-title-row { display: flex; justify-content: space-between; align-items: center; }
+  .exp-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+  .exp-company { font-size: 15px; font-weight: 400; color: var(--text); margin-top: 1px; }
+  .exp-period { font-size: 13px; color: var(--sub); margin-top: 2px; }
+  .exp-duration { color: var(--sub); }
+  .exp-location { font-size: 13px; color: var(--sub); margin-top: 1px; }
+  .exp-chevron { flex-shrink: 0; transition: transform 0.25s; opacity: 0.25; color: var(--text); }
+  .exp-chevron.open { transform: rotate(90deg); }
+  .exp-bullets { margin-top: 18px; padding-left: 64px; display: none; }
+  .exp-bullets.open { display: block; }
+  .exp-bullet { font-size: 14.5px; line-height: 1.55; color: var(--sub); margin-bottom: 8px; padding-left: 14px; position: relative; }
+  .exp-bullet::before { content: '·'; position: absolute; left: 0; color: var(--sub); }
+
+  /* ── Filters ── */
+  .works-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+  .works-header .section-title { margin: 0; }
+  .filters-wrap { margin-bottom: 0; }
+  .filters-toggle { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: var(--accent); cursor: pointer; padding: 0; outline: none; line-height: 1; }
+  .filters-arrow { transition: transform 0.25s; color: var(--accent); }
+  .filters-wrap.open .filters-arrow { transform: rotate(90deg); }
+  .filters-dropdown { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .filter-tag { font-size: 14px; font-weight: 400; color: var(--sub); padding: 4px 0; cursor: pointer; transition: color 0.15s; display: flex; align-items: center; gap: 4px; margin-right: 16px; }
+  .filter-tag:hover { color: var(--text); }
+  .filter-tag.active { color: var(--accent); font-weight: 500; }
+  .filter-check { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--accent); display: flex; align-items: center; justify-content: center; }
+  .filter-check svg { width: 10px; height: 10px; }
+
+  /* ── Client logos ── */
+  .clients-card { background: var(--card); border-radius: var(--radius); padding: 32px; margin-bottom: 48px; }
+  .clients-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px 56px; align-items: center; justify-items: center; }
+  .client-btn { background: none; border-radius: 0; padding: 8px; display: flex; align-items: center; justify-content: center; min-height: auto; transition: opacity 0.15s; }
+  .client-btn:hover { background: none; transform: none; opacity: 0.6; }
+  .client-btn img { max-height: 110px; max-width: 100%; object-fit: contain; }
+
+  /* ── Projects ── */
+  .project-card { background: var(--card); border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; }
+  .slideshow { position: relative; max-width: 100%; margin: 0 auto; overflow: visible; display: flex; justify-content: center; min-height: 300px; }
+  .slide { display: none; }
+  .slide.active { display: block; position: relative; min-height: 300px; }
+  .slide img { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
+  .slide video { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
+  .slide-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 2; transition: background 0.15s; }
+  .slide-arrow:hover { background: rgba(255,255,255,0.35); }
+  .slide-arrow.left { left: 12px; }
+  .slide-arrow.right { right: 12px; }
+  .slide-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
+  .slide-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.2s; }
+  .slide-dot.active { background: #fff; }
+  .project-info { padding: 20px 28px 24px; }
+  .project-role { font-size: 11px; font-weight: 500; color: var(--sub); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .project-brand { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: baseline; }
+  .project-year { font-size: 13px; font-weight: 400; color: var(--sub); }
+  .project-title { font-size: 15px; color: var(--sub); line-height: 1.45; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .project-tag { font-size: 11px; color: var(--sub); font-weight: 500; background: var(--bg); border-radius: 6px; padding: 3px 8px; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ═══ MOBILE ═══ */
+  @media (max-width: 759px) {
+    .nav { padding: 12px 16px; height: auto; flex-direction: column; }
+    .nav-name, .nav-email { display: none; }
+    .toggle-wrap { width: 100%; height: 34px; border-radius: 17px; }
+    .toggle-slider { height: 28px; border-radius: 14px; }
+    .toggle-btn { font-size: 13px; border-radius: 14px; }
+    .hero { padding: 24px 16px 4px; }
+    .hero-card { border-radius: 12px; padding: 32px 20px 28px; }
+    .hero h1 { font-size: 28px; letter-spacing: -0.02em; }
+    .hero-links { font-size: 14px; margin-top: 10px; gap: 14px; }
+    .hero-icon { width: 14px; height: 14px; }
+    .content { padding: 20px 0 40px; }
+    .about-card { border-radius: 12px; padding: 14px 16px; margin: 0 16px 16px; }
+    .about-text { font-size: 14px; line-height: 1.55; }
+    .section-label { font-size: 13px; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 8px; padding: 0 16px; }
+    .section-title { font-size: 13px; font-weight: 400; letter-spacing: 0.02em; padding: 0 32px; margin-bottom: 8px; }
+    .exp-cards { margin: 0 16px; display: flex; flex-direction: column; gap: 8px; }
+    .exp-card { border-radius: 12px; padding: 14px 16px; margin-bottom: 0; }
+    .exp-row { gap: 12px; }
+    .exp-logo { width: 40px; height: 40px; border-radius: 10px; }
+    .exp-title { font-size: 16px; }
+    .exp-company { font-size: 14px; }
+    .exp-period { font-size: 12px; }
+    .exp-location { font-size: 12px; }
+    .exp-bullets.open { padding-left: 52px; }
+    .exp-bullet { font-size: 14px; }
+    .filters-wrap { padding: 0; margin-bottom: 0; }
+    .filters-dropdown { justify-content: center; gap: 12px; margin-bottom: 16px; padding: 0 16px; }
+    .works-header { padding: 0 16px; margin-bottom: 16px; }
+    .filter-tag { font-size: 13px; margin-right: 12px; white-space: nowrap; }
+    .clients-card { margin: 0 16px 20px; padding: 20px; border-radius: 12px; }
+    .clients-grid { grid-template-columns: 1fr 1fr 1fr; gap: 24px 28px; }
+    .client-btn { padding: 4px; }
+    .client-btn img { max-height: 110px; }
+    .slide-arrow { display: none !important; }
+    .projects-wrap { margin: 0 16px; }
+    .project-card { border-radius: 12px; margin-bottom: 32px; }
+    .project-info { padding: 14px 16px 16px; }
+    .project-brand { font-size: 17px; }
+    .project-title { font-size: 14px; }
+  }
+
+  .footer { text-align: center; padding: 8px 0 32px; font-size: 11px; color: var(--sub); }
+  .back-to-top { position: fixed; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: var(--card); color: var(--sub); font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .back-to-top.visible { opacity: 1; pointer-events: auto; }
+  .back-to-top:hover { opacity: 0.85; }
+  @media (prefers-color-scheme: dark) {
+    .client-btn img { filter: brightness(0) invert(1); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-name">Allen Usubov</span>
+  <div class="toggle-wrap" id="toggleWrap">
+    <div class="toggle-slider"></div>
+    <button class="toggle-btn active" data-tab="resume" onclick="switchTab('resume')">Resume</button>
+    <button class="toggle-btn" data-tab="portfolio" onclick="switchTab('portfolio')">Portfolio</button>
+  </div>
+  <span class="nav-email"><a href="mailto:allen@all3n.nyc">allen@all3n.nyc</a></span>
+</nav>
+
+<div class="hero">
+  <div class="hero-card">
+  <h1>Allen Usubov</h1>
+  <div class="hero-links">
+    <a href="mailto:allen@all3n.nyc"><svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>allen@all3n.nyc</a>
+    <a href="tel:2122352225"><svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>212.235.2225</a>
+  </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ══ RESUME ══ -->
+  <div id="tab-resume" class="tab-content active">
+
+    <div class="section-label">About</div>
+    <div class="about-card">
+      <p class="about-text">Allen Usubov is an Art Director & Designer born and based out of New York City. With experience across branding, apparel, product design, and e-commerce, he has led creative from early concept through final production. With over 7 years of design experience, he has also directed design for brands such as Sinclair Global & Golfwang. His approach prioritizes consistency, taste, and detail to ensure every element supports a cohesive vision.</p>
+    </div>
+
+    <div class="section-title">Experience</div>
+    <div class="exp-cards">
+
+      <!-- Allen® -->
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-row">
+          <div class="exp-logo"><img src="https://64.media.tumblr.com/b7959017d30a0029eae631bea8ace0be/0f1ca6870bd4e68c-2d/s2048x3072/ad2225f64b183651f5fb8eb0f944d0375d59ce69.pnj"></div>
+          <div class="exp-info">
+            <div class="exp-title-row">
+              <div>
+                <div class="exp-title">Founder / Creative Director</div>
+                <div class="exp-company">Allen®</div>
+                <div class="exp-period"><span class="exp-date" data-start="2022-10" data-end="">Oct 2022 – Present</span></div>
+                <div class="exp-location">New York, New York, United States</div>
+              </div>
+              <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Founded and creatively direct a New York City-based brand spanning apparel, accessories, and product design</div>
+          <div class="exp-bullet">Oversee all aspects of brand identity, product development, and e-commerce operations</div>
+          <div class="exp-bullet">Design and develop original products including custom New Era collaborations and accessories</div>
+          <div class="exp-bullet">Manage end-to-end production from concept and tech packs through manufacturing coordination and fulfillment</div>
+          <div class="exp-bullet">Built and maintain a custom Shopify storefront with original theme development</div>
+        </div>
+      </div>
+
+      <!-- Sinclair Global -->
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-row">
+          <div class="exp-logo"><img src="https://64.media.tumblr.com/62904239b26910f0096dba93012aef0a/0f1ca6870bd4e68c-35/s2048x3072/1b60b82654f08b3a12a1f39bb27b7e93031d3e56.pnj"></div>
+          <div class="exp-info">
+            <div class="exp-title-row">
+              <div>
+                <div class="exp-title">Design Director</div>
+                <div class="exp-company">Sinclair Global</div>
+                <div class="exp-period"><span class="exp-date" data-start="2023-03" data-end="2025-09">Mar 2023 – Sep 2025</span></div>
+                <div class="exp-location">New York, New York, United States</div>
+              </div>
+              <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Led art direction across all major campaigns and photoshoots, establishing a cohesive visual identity that elevated brand perception across product, digital, and marketing channels</div>
+          <div class="exp-bullet">Directed and scaled the design team in developing seasonal apparel collections, translating concept through to final product across multiple categories</div>
+          <div class="exp-bullet">Spearheaded strategic collaborations with external partners including Puma and Trojan, aligning creative direction with brand objectives and production execution</div>
+          <div class="exp-bullet">Conceptualized and oversaw the design of the ComplexCon booth experience, driving significant on-site revenue and increasing brand visibility</div>
+          <div class="exp-bullet">Partnered directly with production facilities to refine fit, materials, and construction, achieving consistent product quality across all collections</div>
+          <div class="exp-bullet">Oversaw the creation of all marketing assets across social media and email, ensuring visual consistency and alignment with seasonal campaigns</div>
+          <div class="exp-bullet">Implemented new systems for organizing photo and marketing assets, improving team efficiency and content scalability</div>
+          <div class="exp-bullet">Developed and standardized tech pack frameworks, streamlining sampling and product development processes</div>
+        </div>
+      </div>
+
+      <!-- Golfwang -->
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-row">
+          <div class="exp-logo"><img src="https://64.media.tumblr.com/c1c065a292f8e7ca668067b24255653f/0f1ca6870bd4e68c-4e/s2048x3072/d394a497a47b29b1fe70b1da42af504f28c46f4f.pnj"></div>
+          <div class="exp-info">
+            <div class="exp-title-row">
+              <div>
+                <div class="exp-title">Design Director</div>
+                <div class="exp-company">Golfwang</div>
+                <div class="exp-period"><span class="exp-date" data-start="2022-01" data-end="2023-03">Jan 2022 – Mar 2023</span></div>
+                <div class="exp-location">Los Angeles, California, United States</div>
+              </div>
+              <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Led art direction across all major campaigns and photoshoots, shaping a distinct visual identity across product, digital, and brand storytelling</div>
+          <div class="exp-bullet">Hired and directed a multidisciplinary design team responsible for seasonal apparel collections and all associated launch assets</div>
+          <div class="exp-bullet">Drove creative direction for high-profile collaborations with Clarks, Converse, and independent artists</div>
+          <div class="exp-bullet">Conceptualized and oversaw the design and installation of the Golf Wang NYC flagship store, translating brand identity into a physical retail experience</div>
+          <div class="exp-bullet">Partnered directly with production facilities to refine fit, materials, and construction</div>
+          <div class="exp-bullet">Led styling, casting, editing, and retouching for seasonal lookbooks, featured on Hypebeast and Highsnobiety</div>
+          <div class="exp-bullet">Implemented scalable systems for managing photo and marketing assets</div>
+          <div class="exp-bullet">Developed standardized tech pack frameworks to streamline sampling and product development</div>
+        </div>
+      </div>
+
+      <!-- Stray Rats -->
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-row">
+          <div class="exp-logo"><img src="https://64.media.tumblr.com/203f7ad8d02a76b2bc502b98add4dbf6/0f1ca6870bd4e68c-b2/s2048x3072/f97a2a4822ddfbca9d59011370b6a8f51145c80f.pnj"></div>
+          <div class="exp-info">
+            <div class="exp-title-row">
+              <div>
+                <div class="exp-title">Designer</div>
+                <div class="exp-company">Stray Rats</div>
+                <div class="exp-period"><span class="exp-date" data-start="2018-03" data-end="2022-01">Mar 2018 – Jan 2022</span></div>
+                <div class="exp-location">Miami, Florida, United States</div>
+              </div>
+              <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Contributed to art direction across campaign shoots, supporting visual storytelling across product and brand imagery</div>
+          <div class="exp-bullet">Designed graphics and apparel for seasonal collections and collaborative projects, spanning printed and cut-and-sew categories</div>
+          <div class="exp-bullet">Developed product for collaborations with Carhartt WIP, Maharishi, Sonic the Hedgehog, and DC Comics (Joker)</div>
+          <div class="exp-bullet">Created original graphic systems and apparel concepts across multiple product categories and brand partnerships</div>
+          <div class="exp-bullet">Established improved tech pack frameworks for both print and cut-and-sew products</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PORTFOLIO ══ -->
+  <div id="tab-portfolio" class="tab-content">
+
+    <div class="section-title">Selected Clients</div>
+    <div class="clients-card">
+    <div class="clients-grid">
+      <button class="client-btn" onclick="scrollToProject('sinclair')"><img src="https://64.media.tumblr.com/52cd35c3788604de2f7417dc09875ef5/4e8caeec151a796f-ff/s1280x1920/33d912636aa0f192d5fde7e37ce326def81b68df.pnj" alt="Sinclair"></button>
+      <button class="client-btn" onclick="scrollToProject('converse')"><img src="https://64.media.tumblr.com/fae2cf6c869353c3f97cd1517650a5f7/90bc470ec6b14fad-c2/s1280x1920/cdfd2017cec64e1d099015c38002191258acfd75.pnj" alt="Converse"></button>
+      <button class="client-btn" onclick="scrollToProject('golfwang')"><img src="https://64.media.tumblr.com/172277869d10a51b8c07e6545af5a484/f8e42902ff4bd4bc-f7/s1280x1920/917bb44a77f07daea066a4dae8be7373d3accc6c.pnj" alt="Golf Wang"></button>
+      <button class="client-btn" onclick="scrollToProject('calvinklein')"><img src="https://64.media.tumblr.com/aa16239d7664a549536ffacc43aee3a7/ae56f73827c0eaf4-0c/s1280x1920/6a7d3990f541335a969849002f83d4694cd6fc2f.pnj" alt="Calvin Klein"></button>
+      <button class="client-btn" onclick="scrollToProject('puma')"><img src="https://64.media.tumblr.com/9839f617ce568b8c4a422ab9ce1ba8d0/a5c01da7565feb6e-e0/s1280x1920/9b9aba5632535495cfcbf84bf3bdcd9b650e7d8a.pnj" alt="Puma"></button>
+      <button class="client-btn" onclick="scrollToProject('trojan')"><img src="https://64.media.tumblr.com/8cd328280affaaa28f19b59ccbca5793/7154d4501325467e-b4/s1280x1920/70557a7576e8936609fb274c668f1d9f292fb258.pnj" alt="Trojan"></button>
+      <button class="client-btn" onclick="scrollToProject('scarrs')"><img src="https://64.media.tumblr.com/cf227806096a18e0530358c9f8b5a6c2/f2b239b02732fb93-c2/s1280x1920/a032d4eaaa84315cda670e1ec912b902424d40f2.pnj" alt="Scarr's Pizza"></button>
+      <button class="client-btn" onclick="scrollToProject('carhartt')"><img src="https://64.media.tumblr.com/1416bbc10136cb0693b88430da487413/477938e6797c768d-a1/s1280x1920/c4c8a5bc6a30876c9e57e52334e49c3dc9bd5f9c.pnj" alt="Carhartt WIP"></button>
+      <button class="client-btn" onclick="scrollToProject('maharishi')"><img src="https://64.media.tumblr.com/9dec37d6a8af708cd6274361f9f7c94e/e9e6ae22bcf9f244-85/s1280x1920/60d9e6103086f72ab7705e2ff89843709b22693b.pnj" alt="Maharishi"></button>
+      <button class="client-btn" onclick="scrollToProject('sonic')"><img src="https://64.media.tumblr.com/fcb7893237a7d0cf5a8d20e5801b5e67/8bc95b0c22d91e20-58/s1280x1920/a36a65591564d03e2e7b4ddaa170070f7cd6a281.pnj" alt="Sonic the Hedgehog"></button>
+      <button class="client-btn" onclick="scrollToProject('newbalance')"><img src="https://64.media.tumblr.com/626f5fd2f3cd539b405aaa223f24dab8/4283f7f1c4d81009-ab/s1280x1920/4c3602131ac347d47faf645ec0a28b40e7ac0e5e.pnj" alt="New Balance"></button>
+      <button class="client-btn" onclick="scrollToProject('sp5der')"><img src="https://64.media.tumblr.com/f005b9a648256b536d62e9600401c94f/6a1c507a7ec34a65-42/s1280x1920/e78488c97c0ed14cf48068668d1a5a776668ef7d.pnj" alt="Sp5der"></button>
+      <button class="client-btn" onclick="scrollToProject('personal')"><img src="https://64.media.tumblr.com/35b9ee396dd8fa9c1e03f6d2a4890acd/0dc3044bc640ad24-0a/s1280x1920/f49b9b87ed4fb73012f5b93ef833d1d0c8b0e48c.pnj" alt="Allen®"></button>
+      <button class="client-btn" onclick="scrollToProject('strayrats')"><img src="https://64.media.tumblr.com/1d997a85ad17306bd08795e03f3f1c37/2fc963a5caeede12-37/s1280x1920/6d54bc04581180adc3f201a1b847dc975b7ef4ce.pnj" alt="Stray Rats"></button>
+    </div>
+    </div>
+
+    <!-- Selected Works row with inline Filters toggle -->
+    <div class="works-header">
+      <div class="section-title" style="margin-bottom:0">Selected Works</div>
+      <div class="filters-wrap">
+        <button class="filters-toggle" onclick="toggleFilters()">
+          <span>Filters</span>
+          <svg class="filters-arrow" width="10" height="10" viewBox="0 0 10 10"><path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="filters-dropdown" id="filters-dropdown" style="display:none">
+      <button class="filter-tag active" data-filter="All" onclick="filterProjects('All', this)">
+        <span class="filter-check"><svg viewBox="0 0 10 10"><path d="M2 5.5L4 7.5L8 3" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        All
+      </button>
+      <button class="filter-tag" data-filter="Art Direction" onclick="filterProjects('Art Direction', this)">Art Direction</button>
+      <button class="filter-tag" data-filter="Spatial Design" onclick="filterProjects('Spatial Design', this)">Spaces</button>
+      <button class="filter-tag" data-filter="Design" onclick="filterProjects('Design', this)">Design</button>
+      <button class="filter-tag" data-filter="Photography" onclick="filterProjects('Photography', this)">Photography</button>
+    </div>
+    <div class="projects-wrap" id="projects-container"></div>
+  </div>
+
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3"/><path d="M3 7L8 2L13 7"/></svg>
+</button>
+
+<div class="footer">Allen Usubov — <script>document.write(new Date().getFullYear())</script></div>
+
+<script>
+// ── PROJECT DATA (auto-sorted by date, newest first) ──
+const PROJECTS = [
+  {
+    id: "puma-sinclair", brand: "Puma / Sinclair Global", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["puma", "sinclair"],
+    date: "2026-01-15",
+    media: [
+      { type: "video", url: "https://va.media.tumblr.com/tumblr_tf37169JTE1b2gh2d.mp4" },
+      { type: "image", url: "https://64.media.tumblr.com/600aeb6da0c6ee3e397d8845122e0f64/fd0596c180b5d2a9-d2/s1280x1920/6f0a8c23bdf66ba0a7b1a7e9c38e285472ff1de2.jpg" },
+      { type: "image", url: "https://64.media.tumblr.com/48210e3baa8acfbea6e207330631dee7/fd0596c180b5d2a9-54/s1280x1920/3cc8d9daaabad2d20e1d85601ad8c9edbacabb5e.jpg" },
+      { type: "image", url: "https://64.media.tumblr.com/8ea5ecef3b05614f8f619f7fb215d3e2/fd0596c180b5d2a9-f9/s1280x1920/be3f840886ce4169d71995cbf3292091309576c2.jpg" },
+      { type: "image", url: "https://64.media.tumblr.com/9eddc226a4771d0448c225a65e7b615b/fd0596c180b5d2a9-1e/s1280x1920/9446dbb7f8a29d88cad2c5ce8c9299c337ab3367.jpg" },
+      { type: "image", url: "https://64.media.tumblr.com/7f592ca66b272e9c637745a2970e1734/fd0596c180b5d2a9-1d/s1280x1920/600114b5c4784c9ee2d8fca2cab150185ff5cd45.jpg" },
+      { type: "image", url: "https://64.media.tumblr.com/18a51139a19f6e33c641f360b5b4571a/fd0596c180b5d2a9-ba/s1280x1920/67531193c0f8bfdfdd0ec6d7746aac6d8de36f31.jpg" },
+    ],
+    images: [],
+  },
+  {
+    id: "converse-byyou-2", brand: "Converse / Golfwang: Converse By You", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["converse", "golfwang"],
+    date: "2022-11-01",
+    images: [
+      "https://64.media.tumblr.com/4c943856bfd860aadb4e1b3030740e4b/cff70ce9bcf4bba0-1d/s2048x3072/e0ed0e01821cd009c80c2d44cf4f31d362787ee5.jpg",
+      "https://64.media.tumblr.com/1cc808e0e669e2bd72342f979d1c706c/cff70ce9bcf4bba0-9b/s2048x3072/671766b43f55a75fab4c41936780594be26a99ba.jpg",
+      "https://64.media.tumblr.com/1fbe1634d859409dfaf09efd4abc474e/cff70ce9bcf4bba0-f3/s2048x3072/35e73e934b0956ccce947e1f25458b33c33e34d2.jpg",
+      "https://64.media.tumblr.com/191eb19778e5df493871d6c49726137f/cff70ce9bcf4bba0-f6/s2048x3072/956293f974c4270d027bb3ddec6c6fcf1c0fbfbb.jpg",
+      "https://64.media.tumblr.com/8a68d1b6321728fbd4b911e5dbe3946e/cff70ce9bcf4bba0-2a/s2048x3072/3d8c4bebf144cba68f91eaa95753bf383d67ee25.jpg",
+      "https://64.media.tumblr.com/773bd904a2aa5d97fe26147463f6b551/cff70ce9bcf4bba0-2c/s2048x3072/b68a9c0c89e5655f983f88939fd924cb28829675.jpg",
+      "https://64.media.tumblr.com/8c706182f1f31f14654efa48ab2a5cb0/cff70ce9bcf4bba0-75/s2048x3072/06ada8cc389dae45058be6467f0603bf3477dcf5.jpg",
+      "https://64.media.tumblr.com/c5009e3a23c653e1b3d73be5cdf0bc5c/cff70ce9bcf4bba0-de/s2048x3072/ac103ff91bc5166ec2e0d2379d803759ce9ec8ab.jpg",
+      "https://64.media.tumblr.com/14daacb4bbebbc710dfc562fccd468ea/cff70ce9bcf4bba0-00/s2048x3072/bfc2c3cccc0d743662156d320282cca943998333.jpg",
+      "https://64.media.tumblr.com/79efacaa299d275008f6cd9b56b1935b/cff70ce9bcf4bba0-a4/s2048x3072/a2ba835ca7d6f17855e5d942fa5de2c0161c2dbc.jpg",
+      "https://64.media.tumblr.com/c7efe73dd2c3615dbb1711b66720dc85/cff70ce9bcf4bba0-45/s2048x3072/a7d096b1b40f07389129a4ae735309d87a28f8c4.jpg",
+      "https://64.media.tumblr.com/40c5d8c79b0824f5ebc58c6fa3568954/cff70ce9bcf4bba0-a3/s2048x3072/84a296a844a25ecfb002d0e26871755e11509cb8.jpg",
+      "https://64.media.tumblr.com/c94b770fbe38ffddece65c8e00534133/cff70ce9bcf4bba0-e1/s2048x3072/ff22ff76336f6f0caa5497a894a199bbf95317a9.jpg",
+      "https://64.media.tumblr.com/2da00c8162e2c2dd478cae9cd659bc65/cff70ce9bcf4bba0-13/s2048x3072/81242010f60a1a7163f5e377741c3e38b0936e17.jpg",
+      "https://64.media.tumblr.com/57e861cdedbc315560aa47518eda743a/cff70ce9bcf4bba0-03/s2048x3072/a62d2ba13fb389a1e641d981e7e8ed51df27d03f.jpg",
+    ],
+  },
+  {
+    id: "converse-byyou", brand: "Converse / Golfwang: Converse By You", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["converse", "golfwang"],
+    date: "2022-08-01",
+    images: [
+      "https://64.media.tumblr.com/11fbfeaebcd59bf74bdeee466f28ffbb/945b00e5d7183342-87/s2048x3072/0199d34c83c799aa3d8bbd8432c626c9888cf3c8.jpg",
+      "https://64.media.tumblr.com/e7f007c8d49be759bfdcc62df8eaa1ba/945b00e5d7183342-47/s2048x3072/d48f32a42eb244fdcdb47ebb690ea66d959433cf.jpg",
+      "https://64.media.tumblr.com/225d9f64ad945e65eacbcd8bc69a30b9/945b00e5d7183342-d4/s2048x3072/96931ce42da4963fe7685f8512507a63dfd86e83.jpg",
+      "https://64.media.tumblr.com/2872134920f0071d3607b963633dc75a/945b00e5d7183342-64/s2048x3072/37988851223ff8a39bdcf667e612621e0fd22d3d.jpg",
+      "https://64.media.tumblr.com/4e38035968e1e9c7790e9b1ed7e6de93/945b00e5d7183342-39/s2048x3072/f3a50107847a12b46d8313506f2db1dbac528823.jpg",
+      "https://64.media.tumblr.com/edb2d87005d92f6d0f96afa59157a628/945b00e5d7183342-e8/s2048x3072/656fc7cd27ca7135c48273c2d8138879c3d62c73.jpg",
+      "https://64.media.tumblr.com/a5f02e86dc399484a91b563b3308f640/945b00e5d7183342-c5/s2048x3072/1df1a1e815ca63266bb6983df4984a993cefabaa.jpg",
+      "https://64.media.tumblr.com/7e4af64e2bd1b858655a87ffa11d7805/945b00e5d7183342-9c/s2048x3072/4e384a520f5fa889bf9b348f19924dc427065436.jpg",
+      "https://64.media.tumblr.com/31a286112491f728c6fc5640e3d1efb7/945b00e5d7183342-21/s2048x3072/9f28da9e022232c4e4d05337c8d7a3e621dae5d5.jpg",
+      "https://64.media.tumblr.com/784e35fab691c009f9662995305e6514/945b00e5d7183342-ff/s2048x3072/90cac66b813b920dfac0ea3719cd8986e273f6fe.jpg",
+      "https://64.media.tumblr.com/d07efa3454c46d44702a69228197bbbf/945b00e5d7183342-bf/s2048x3072/4f6cf59f7f015faa719cf5b3a8ddeac31d263f36.jpg",
+      "https://64.media.tumblr.com/05a7f2fbe302cc9b2e482b1d0a6c72ea/945b00e5d7183342-d5/s2048x3072/dc5a702c555875095d5f0f9c12b5a71515bfd1aa.jpg",
+    ],
+  },
+  {
+    id: "golfwang-racing", brand: "Golfwang Racing Editorial", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["golfwang"],
+    date: "2022-06-15",
+    images: [
+      "https://64.media.tumblr.com/0436b695770241e21ab65942acab3116/36e10033306bad5d-0c/s2048x3072/d64b29727b562b2b6bc5d34729d565c41b14a98e.jpg",
+      "https://64.media.tumblr.com/c027be9683fd7fa0694611f6c34b529f/36e10033306bad5d-5e/s2048x3072/5522713f638883056adc60a0b0e3def1256c67fb.jpg",
+      "https://64.media.tumblr.com/c48bbe018a07543abe10be41fb2b51af/36e10033306bad5d-3c/s2048x3072/d371da9b04439aae3b623e8d5accacb7d2885d2f.jpg",
+      "https://64.media.tumblr.com/9f1f8eac351ad46e55e24c9e783e24d5/36e10033306bad5d-5c/s2048x3072/dc3d75f49b6bff5b343d67a9e8fd260aacf1cb33.jpg",
+      "https://64.media.tumblr.com/31d4fa464e6d765a1437c606916dc1a9/36e10033306bad5d-a9/s2048x3072/b72fae2bfa30fe003c1009bb885a0d70594b7dc3.jpg",
+      "https://64.media.tumblr.com/6b1d77ab46f079d9d60d074af3611509/36e10033306bad5d-ae/s2048x3072/91834d32784246a51138d999c58696a7032e06dd.jpg",
+      "https://64.media.tumblr.com/6ce48747e199b43a3a9c2c92e6843731/36e10033306bad5d-27/s2048x3072/0a17b7289bb5e8e68c10cb10dfbe05660dc5c8a4.jpg",
+      "https://64.media.tumblr.com/026e8a8624636df8fc0f8ed4c21b2646/36e10033306bad5d-c6/s2048x3072/057125ace8346bf0a57c8fddd4a043a5f473ca08.jpg",
+      "https://64.media.tumblr.com/451941f3f277ff54f5fdcea315d64a20/36e10033306bad5d-ae/s2048x3072/709cf6cacf9bacb48424a2d263fe186bd9305dd3.jpg",
+    ],
+  },
+  {
+    id: "golfwang-basics", brand: "Golfwang Basics", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["golfwang"],
+    date: "2022-04-01",
+    images: [
+      "https://64.media.tumblr.com/cc7e86b81a7fd617d28b30926ee59223/203b02e0372f4405-ae/s1280x1920/6764250e3b8a695e0b6770e6e6242aa9be522583.jpg",
+      "https://64.media.tumblr.com/4e2abd9f4f31d62830056c2519baca87/203b02e0372f4405-45/s1280x1920/3c9c03d0c395fc8606abc47eecccfd9eaeee46c1.jpg",
+      "https://64.media.tumblr.com/6bb5a14d02559531197c96a77f3d8087/203b02e0372f4405-85/s1280x1920/f901c55be851057d39e151451e67925de290bc6b.jpg",
+      "https://64.media.tumblr.com/c1dfe76af5d1af265d42be5fe66d9daa/203b02e0372f4405-01/s1280x1920/cea634578bb5db0558639baf55d43cdc432bcb4a.jpg",
+    ],
+  },
+  {
+    id: "ebbets-allen", brand: "Ebbets Field Flannels / Allen\u00ae", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["personal"],
+    date: "2023-05-01",
+    images: [
+      "https://all3n.nyc/cdn/shop/articles/Allen-NYC-Ebbets.webp",
+    ],
+  },
+  {
+    id: "newera-allen", brand: "New Era / Allen\u00ae", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["personal"],
+    date: "2024-03-01",
+    images: [
+      "https://cdn.shopify.com/s/files/1/0987/2048/1651/articles/Allen_NYC_NE_a.webp?v=1774555618",
+    ],
+  },
+  {
+    id: "sinclair-lookbook-ss25", brand: "Sinclair Global Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["sinclair"],
+    date: "2024-06-01",
+    images: [
+      "https://64.media.tumblr.com/cd9bda3f6e4c3e60584e8ea56310a5d6/ef26d37d022280db-c7/s2048x3072/b0c395d0d5dcdd85e7784c74824cf1601748d60e.pnj",
+      "https://64.media.tumblr.com/f210ddd0fe787b1c59720fe77c4a5888/ef26d37d022280db-e1/s2048x3072/180f8742b249901ef99910b927d4079b80bd9af5.pnj",
+      "https://64.media.tumblr.com/64432abf72df3317b9cd15915983f415/ef26d37d022280db-98/s2048x3072/cc6f6cccd87a86c4dc9a489f668be547f724a4ea.pnj",
+      "https://64.media.tumblr.com/761c524d176fc712ef2d3b2de9502670/ef26d37d022280db-3b/s2048x3072/3def2bc7c23d584440bc441dd24730937b447ab7.pnj",
+    ],
+  },
+  {
+    id: "trojan-sinclair", brand: "Trojan / Sinclair Global", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["trojan", "sinclair"],
+    date: "2025-11-01",
+    images: [
+      "https://64.media.tumblr.com/b1dae0845d9ec0a3ab5c197ac130eea4/54ae8afcbea5cf05-cc/s1280x1920/eebb8da99a4cee88a79e8bdfe84705ed52a43a7d.jpg",
+      "https://64.media.tumblr.com/89a4d1829f198882bbb72130951389f7/54ae8afcbea5cf05-9e/s1280x1920/71965924484c0178d83fe75bc23f3fcd4a891325.jpg",
+      "https://64.media.tumblr.com/0925990bd7b4b4c38b5633bdf0ac7233/54ae8afcbea5cf05-9d/s1280x1920/4c7f4081a291bc536d63a7e1fd7aa86d81e20121.jpg",
+      "https://64.media.tumblr.com/df92140381297024d77b495a555947c0/54ae8afcbea5cf05-50/s1280x1920/d468878703a40f88fbd5e729af11fbf6f52e6fcd.jpg",
+    ],
+  },
+  {
+    id: "sinclair-lookbook-jan25", brand: "Sinclair Global Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["sinclair"],
+    date: "2025-01-15",
+    images: [
+      "https://64.media.tumblr.com/c25fe5fc36bd52a47267977ec32d8d71/5d22f1bc8726a904-0c/s2048x3072/9056e128a0303b13d1249fad3371e3854676b997.pnj",
+      "https://64.media.tumblr.com/619b2f09cad52048e8b2571f3c9b9e8c/5d22f1bc8726a904-ba/s2048x3072/5ef39dfd0c827505515e60d24da1bc34cd37de09.pnj",
+      "https://64.media.tumblr.com/81cf8ccbcdb497b17a29b7df084f8108/5d22f1bc8726a904-a5/s2048x3072/d865c5ca33f70de313e5e9400c642314a53f6086.pnj",
+    ],
+  },
+  {
+    id: "sinclair-lookbook-dec24", brand: "Sinclair Global Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["sinclair"],
+    date: "2024-12-01",
+    images: [
+      "https://64.media.tumblr.com/ae202ad236fcd2ab8ba74469e37020bf/f482df50266624e8-87/s2048x3072/df6eca077394c60f7dae5cdcad6cd4c9fb41971f.pnj",
+      "https://64.media.tumblr.com/79e470d99f698acec2ac3f8e1b20f60b/f482df50266624e8-91/s2048x3072/4e8dd6a8cf0d9529546bcf26f7681d959ca2f39d.pnj",
+      "https://64.media.tumblr.com/fb8e82c260e1fa8bc0942cac88a719ea/f482df50266624e8-42/s2048x3072/4d66e731c0f475602f1e82e6c561c70d8694afb0.pnj",
+    ],
+  },
+  {
+    id: "sinclair-lookbook-jan24", brand: "Sinclair Global Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["sinclair"],
+    date: "2024-01-15",
+    images: [
+      "https://64.media.tumblr.com/abd28b79ac67e395074d186d241a3c66/e187386c2e1331cf-b5/s2048x3072/2582755c7a438fb6c07ee30adb160a2d3b51de5d.pnj",
+      "https://64.media.tumblr.com/5d772d29ef23f3533fcce99828c5a57e/e187386c2e1331cf-47/s2048x3072/fb3aa88541586502da1fca8bd8f83bc730317edf.pnj",
+      "https://64.media.tumblr.com/c5f2393b6e3a2010ac4a7db368da704a/e187386c2e1331cf-85/s2048x3072/9855ad61103be646b6d79c73db4b755d184d12ff.pnj",
+    ],
+  },
+  {
+    id: "sinclair-lookbook-dec23", brand: "Sinclair Global Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["sinclair"],
+    date: "2023-12-01",
+    images: [
+      "https://64.media.tumblr.com/cf010f941501345dfc1e757c9094115e/752af859741a4f63-e7/s2048x3072/df61f658643f4c091b57b1a4ff170d2f43964418.pnj",
+      "https://64.media.tumblr.com/81d41ccd0a598a31878f7079d50ba8e1/752af859741a4f63-5f/s2048x3072/1999b85fc4676cf5d80bbf8057e288c9dab04748.pnj",
+      "https://64.media.tumblr.com/843bdc705a20477a9de88d831e595a1b/752af859741a4f63-5e/s2048x3072/20ae22ead3b9137c775ce0e18defef8926cb5dba.pnj",
+    ],
+  },
+  {
+    id: "golfwang-lookbook-fw22", brand: "Golfwang Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["golfwang"],
+    date: "2022-09-15",
+    images: [
+      "https://64.media.tumblr.com/bb0b45a81b926c861132b41416083dc9/df5e87f99d5a68c8-83/s2048x3072/772fb723422e8afa4dfcb9dcfd63be4fa4c4973d.pnj",
+      "https://64.media.tumblr.com/4c2da83c7640e155abd6275dd191a157/df5e87f99d5a68c8-1d/s2048x3072/3fcc66df63ced26f8d9b286b65fefa4b22b30197.pnj",
+      "https://64.media.tumblr.com/6bc95c5a31907395a3d4ca954f6c05a7/df5e87f99d5a68c8-d4/s2048x3072/47ff4f35d00329f4135685384a04dcf48ad3d079.pnj",
+      "https://64.media.tumblr.com/c88e2edec297a7e93dac70cdbb482f96/df5e87f99d5a68c8-ef/s2048x3072/5e053ab882cd3acbda78cc22d11cfb9b50124783.pnj",
+    ],
+  },
+  {
+    id: "sinclair-lookbook", brand: "Sinclair Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["sinclair"],
+    date: "2025-03-01",
+    images: [
+      "https://64.media.tumblr.com/7e64ca5803ed8ad2677bf30e6c3c4754/c2869fc1a61d6d2f-35/s2048x3072/a2f183a10a5594d062fc83c8c5750d4658d2667e.pnj",
+      "https://64.media.tumblr.com/bffb8e245cd24837d786707f86a2d60c/c2869fc1a61d6d2f-ba/s2048x3072/c54ebd3f42b5504da81ded7214f261924d050431.pnj",
+      "https://64.media.tumblr.com/7a8f80f7322983926cb07ce08388340b/c2869fc1a61d6d2f-aa/s2048x3072/ee9f821516b82e8da5140cd9ddfaa40bcac17235.pnj",
+    ],
+  },
+  {
+    id: "sp5der", brand: "SP5DER / ComplexCon", title: "Cactuscon Booth Design",
+    role: "Spaces, Design", tags: ["Spatial Design", "Design"],
+    clients: ["sp5der"],
+    date: "2024-11-01",
+    images: [
+      "https://64.media.tumblr.com/b515021d27d0b97fabd951a649152d86/30d6e49f0dcdd10e-43/s2048x3072/0ec044726725bf8ae1b199cef91c8033ca783527.pnj",
+      "https://64.media.tumblr.com/c904ac32b24e8d781212a4f17c6166b9/30d6e49f0dcdd10e-6c/s2048x3072/af7e99717602db55d5ed177ee8fe3c7259ae4cbf.jpg",
+      "https://64.media.tumblr.com/54b4dd1d1e6b0af6bc38ea8856b3fffd/30d6e49f0dcdd10e-98/s1280x1920/17e59e0535872fbf26ee8aefa52b83383a08a9c8.jpg",
+    ],
+  },
+  {
+    id: "sonic-strayrats", brand: "Sonic The Hedgehog / Stray Rats Part 2", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["sonic", "strayrats"],
+    date: "2021-12-01",
+    images: [
+      "https://64.media.tumblr.com/6bf11d45c7e6e0f7e27cab3c629d1bc6/39ca0f8682661d97-b8/s1280x1920/486e7ed5be7dda16502daed717d0a2fda0aaaffa.jpg",
+      "https://64.media.tumblr.com/20ca93b422c1b80dfe68be12be7d44f8/39ca0f8682661d97-64/s1280x1920/7b8c145a5c443646fd0059d05d87a510b1b205b6.jpg",
+      "https://64.media.tumblr.com/e1242a510aa856db5e1f13718343f2f5/39ca0f8682661d97-37/s1280x1920/c2c1f848319d899f09d26174b4529b35b149de91.jpg",
+      "https://64.media.tumblr.com/ff06c68a611310511d64da5026905586/39ca0f8682661d97-98/s1280x1920/b27a2780c9495e43f8bd772f0d3b86b61a6c671c.jpg",
+    ],
+  },
+  {
+    id: "sonic-strayrats-1", brand: "Sonic The Hedgehog / Stray Rats Part 1", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["sonic", "strayrats"],
+    date: "2021-07-01",
+    images: [
+      "https://64.media.tumblr.com/ba1cb36632e7dfed88e7317f92257f27/defd1ab6a12d3ec3-d4/s1280x1920/862130714d1b52a11a0809acba051a21af33acb0.jpg",
+      "https://64.media.tumblr.com/c3f0324281ddb04c7db082a78f581e02/defd1ab6a12d3ec3-95/s1280x1920/b6a5e501b4bdc1ba4f8ddd35663366ceb36ea31a.jpg",
+      "https://64.media.tumblr.com/56697e1275aff05194b253e5205a6352/defd1ab6a12d3ec3-eb/s1280x1920/64c23568cccf77c71a2769c80efb51b28903e757.jpg",
+      "https://64.media.tumblr.com/3f1b0e74dcf9a5abf837b75431c6860b/defd1ab6a12d3ec3-91/s1280x1920/a2ae6722fa178f7df9399246028b3994e16f5eb8.jpg",
+      "https://64.media.tumblr.com/4c521117ad5866195038ee392a196719/defd1ab6a12d3ec3-54/s1280x1920/b3206dfa20d790e04aa3fab572cb4a138dc6104d.jpg",
+    ],
+  },
+  {
+    id: "maharishi-strayrats", brand: "Maharishi / Stray Rats", title: "Year of the Rat",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["maharishi", "strayrats"],
+    date: "2021-09-03",
+    images: [
+      "https://64.media.tumblr.com/951caeb9e930708518e5d7076456cb72/bae882d81744abde-9e/s1280x1920/d1cf5582221be3d7066ca61e559d321e568eac48.jpg",
+      "https://64.media.tumblr.com/56556b0b3d23b1f96f9e48a5db1536f8/bae882d81744abde-56/s1280x1920/b2769327702e0d144c36b6268fd656c38045e48f.jpg",
+      "https://64.media.tumblr.com/5ee167c79a3294f06f45a5c18d4140db/bae882d81744abde-d4/s1280x1920/a2cfee5dc80e7727eaf5155ea5e3fd41536cf8ad.jpg",
+      "https://64.media.tumblr.com/fefb5d11dff3b4745198db5aad1ecd2c/bae882d81744abde-54/s1280x1920/570f32faaabc7bdb295b52ab2e3a6f1c18f13877.jpg",
+      "https://64.media.tumblr.com/2e2886916baf31e57eff59e0df1385b2/bae882d81744abde-93/s1280x1920/c895f52170b3a5e4f21dd62dd741082e3ab9585f.jpg",
+      "https://64.media.tumblr.com/69ede38dbad05e8d5ff25e363862153a/bae882d81744abde-e1/s1280x1920/5b3540c6a7747e67b6daa6858f13418dd64e5179.jpg",
+      "https://64.media.tumblr.com/3b42b46f0ec00099fed6be896707e9b3/bae882d81744abde-38/s1280x1920/7c52b4e1963099a57a561f455dc575a12d193d76.jpg",
+    ],
+  },
+  {
+    id: "golfwang-store", brand: "Golfwang New York Flagship", title: "",
+    role: "Spaces, Design", tags: ["Spatial Design", "Design"],
+    clients: ["golfwang"],
+    date: "2023-02-01",
+    images: [
+      "https://64.media.tumblr.com/dd450e931c97bf830b95c303e5fe407f/1cac56dd5ba95145-2b/s2048x3072/bef4f5fcf42f110f5332ee3ec32d991a2e69b43b.pnj",
+      "https://64.media.tumblr.com/dde4cb50ce40fd9f52fdc937c614191c/1cac56dd5ba95145-91/s2048x3072/7444944cc13ed7d8da69c0b167b1d9c96e192320.pnj",
+      "https://64.media.tumblr.com/2aa1de5ea470d671e10c5c9094bb4d7e/1cac56dd5ba95145-1a/s2048x3072/353daf9f3d0b33e482c451959fdb46a29da4f9ac.pnj",
+      "https://64.media.tumblr.com/3bd3d1a6d90b56fc128ed0eacaf0df07/1cac56dd5ba95145-fd/s2048x3072/9f1f6e2655702da27cd65058ffb2a1e2dd56e71f.pnj",
+      "https://64.media.tumblr.com/d1176a14212fe130465fdffa2a22abdf/1cac56dd5ba95145-a9/s2048x3072/ccc7a066e40e330fe7b135ec7f21823298e4eb79.pnj",
+      "https://64.media.tumblr.com/8647424843dabb0687a22fa2d129f219/1cac56dd5ba95145-cf/s2048x3072/0d34fac89fbbbd2d6fd8ad591ce83537bed1168e.pnj",
+    ],
+  },
+  {
+    id: "converse-golfwang", brand: "Converse / Golfwang", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["converse", "golfwang"],
+    date: "2022-05-01",
+    images: [
+      "https://64.media.tumblr.com/d944c93af75295df395008550307de9b/cc77773bbff9120d-c6/s2048x3072/9dc34340ca778784cac3daffc87d6e8816911c08.jpg",
+      "https://64.media.tumblr.com/b110415c00cc5ba9448870fc419bd032/cc77773bbff9120d-ac/s2048x3072/38a6e1f589f0a42fefd77c02a9dcaf8eea845c95.jpg",
+      "https://64.media.tumblr.com/9eafce7cf2156d688a1250e0e3db610a/cc77773bbff9120d-f2/s2048x3072/33d04a203c9df91f5bddede856b0151e25e86bff.jpg",
+    ],
+  },
+  {
+    id: "golfwang-lookbook-ss22", brand: "Golfwang Lookbook", title: "",
+    role: "Art Direction, Design", tags: ["Art Direction", "Design"],
+    clients: ["golfwang"],
+    date: "2022-03-15",
+    images: [
+      "https://64.media.tumblr.com/f241d9143a52842d50c061dffe40100e/fb12be8dd2f1eb0b-97/s2048x3072/dd8e73dee1544dedc48baeb5c6fd90c5fcc65d23.jpg",
+      "https://64.media.tumblr.com/b26e073709ac9a95e9c8cb6ab536be7e/fb12be8dd2f1eb0b-f8/s2048x3072/3adad79b70e9f49ca8c24dd24a86708fda0db5f9.jpg",
+      "https://64.media.tumblr.com/828fa7067b8bc4212947de32d441c955/fb12be8dd2f1eb0b-9c/s2048x3072/55fff0c6675382a17bf4faacee5b007e0dbf24c5.jpg",
+      "https://64.media.tumblr.com/62892805efe90ea1486c9cd782c57e47/fb12be8dd2f1eb0b-6f/s2048x3072/533355929e08c9817ad2362800f4e00483af0464.jpg",
+      "https://64.media.tumblr.com/680980f5dd84b0223d86eb242baa2e7e/fb12be8dd2f1eb0b-93/s2048x3072/e2c519f86aa124753d8d26aa5bf83300f6473549.jpg",
+      "https://64.media.tumblr.com/4e73260d57a36a9395064fa633866f39/fb12be8dd2f1eb0b-e5/s2048x3072/529e5540ec763ae0e1926399ecca112b8817b57f.jpg",
+      "https://64.media.tumblr.com/d08e8efd1e9f335789a37918a9093371/fb12be8dd2f1eb0b-eb/s2048x3072/873ddd1febc1ca9faf8d4cd6de3414e85bfde9ab.jpg",
+      "https://64.media.tumblr.com/7a939dca2450caddd82312afcff6562c/fb12be8dd2f1eb0b-6e/s2048x3072/668f9ac5b95ea432e9604889c5254496d02a4020.jpg",
+      "https://64.media.tumblr.com/5db23e40eff53fecf2be5dd823616776/fb12be8dd2f1eb0b-5b/s2048x3072/d14b80b545d530efe3da8e1b9fa134d306edae3d.jpg",
+      "https://64.media.tumblr.com/c44fac1b8380d80e356fd1a2582146d9/fb12be8dd2f1eb0b-40/s2048x3072/d362234fd6f414257fcd676d5a00da930ca5f4dd.jpg",
+      "https://64.media.tumblr.com/e12086eb1a95700485d5e04900e5056d/fb12be8dd2f1eb0b-bf/s2048x3072/e838e2dcf740ab75c1b2d7f959986e53415ab504.jpg",
+      "https://64.media.tumblr.com/976d196d6f03c2cc0a7a957cafdd2c6b/fb12be8dd2f1eb0b-85/s2048x3072/7dbe78020386de904614589dcc8db93716b151a7.jpg",
+      "https://64.media.tumblr.com/6982de229cc9cc89b14a5aaa26de89c7/fb12be8dd2f1eb0b-30/s2048x3072/f07467aaee99e392f2ae239de4474a1b8e8155b8.jpg",
+    ],
+  },
+  {
+    id: "calvinklein", brand: "Calvin Klein", title: "",
+    role: "Photography", tags: ["Photography"],
+    clients: ["calvinklein"],
+    date: "2022-03-01",
+    images: [
+      "https://64.media.tumblr.com/15e8b0b3ca07019e0d95c4a154f2de12/5658b2a717c068f3-1b/s2048x3072/431683e5613b16eb2c533c75ca7c57a941ea080f.jpg",
+      "https://64.media.tumblr.com/1373d4448bcf5117c820047891971675/5658b2a717c068f3-d4/s2048x3072/db27b47812a65492af44d7a8aef3390194a8444a.jpg",
+      "https://64.media.tumblr.com/d2e77c03275484a2e16882c0e64d5a8d/5658b2a717c068f3-4c/s2048x3072/9b8c06690b79c8c0cf167240db68ec55785a6bd9.jpg",
+      "https://64.media.tumblr.com/abafaba847615022280f3be9647a685b/5658b2a717c068f3-c8/s2048x3072/29e3498c16aab35fd21c8767c165ccd063508e42.jpg",
+      "https://64.media.tumblr.com/edd9df3b87cb07db0f3e4d79f0629424/5658b2a717c068f3-95/s2048x3072/addf328e2624ac21ecb85856fed0e6b1d1837a6e.jpg",
+      "https://64.media.tumblr.com/37838b33089f91871845f7818b3ce171/5658b2a717c068f3-b6/s2048x3072/51c9d21406e9587666bdae0657a79fd7f2c1163c.jpg",
+      "https://64.media.tumblr.com/0617deb2e2d080605eb7349ca60c0483/5658b2a717c068f3-5f/s2048x3072/781e8aa1515fb8d3f4488bffbcc537d6b416336d.jpg",
+      "https://64.media.tumblr.com/078181871f13f9976c2e4aef420859ce/5658b2a717c068f3-b0/s2048x3072/bd4771328b56de4c69a9d400a565bdee911e7ba4.jpg",
+    ],
+  },
+  {
+    id: "calvinklein-hp", brand: "Calvin Klein / Heron Preston", title: "",
+    role: "Photography", tags: ["Photography"],
+    clients: ["calvinklein"],
+    date: "2021-11-01",
+    images: [
+      "https://64.media.tumblr.com/02b99cb870d92709401cae5fa0d3882f/5658b2a717c068f3-93/s1280x1920/f0cf026a550e576be14417037b3f815056619d5d.jpg",
+      "https://64.media.tumblr.com/9fabe6fa74ab53fc2a8733d9efa7da92/5658b2a717c068f3-44/s1280x1920/56953a1f16bab2642ff49f233fbf820ca23b8106.jpg",
+      "https://64.media.tumblr.com/9858320e561dd345c3bc4c9165f01996/5658b2a717c068f3-51/s1280x1920/759021d1794604b47ad4f939a574c1830aa8da9c.jpg",
+    ],
+  },
+  {
+    id: "newbalance-strayrats", brand: "New Balance / Stray Rats 574", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["newbalance", "strayrats"],
+    date: "2021-01-01",
+    images: [
+      "https://64.media.tumblr.com/972caa264b8a26ff121243e1a2cff3fc/1c7d81151d4d822d-e0/s2048x3072/286639174911afbf75affa705ef933f61c7c7c2a.pnj",
+      "https://64.media.tumblr.com/fbd5f40339a17675199c0e420e537053/1c7d81151d4d822d-f1/s2048x3072/1983d7688f2dc239bcfe4cc2b2ff4c5a823edb29.pnj",
+    ],
+  },
+  {
+    id: "carhartt-strayrats", brand: "Carhartt WIP / Stray Rats", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["carhartt", "strayrats"],
+    date: "2020-12-01",
+    media: [
+      { type: "image", url: "https://64.media.tumblr.com/e5497c20df2eb488de7b7ecd92941a9f/bb07fd962955f628-2b/s1280x1920/5dd1619067dcd9f6d08f1a36e407af6fdaecbff8.jpg" },
+      { type: "video", url: "https://va.media.tumblr.com/tumblr_tf3abn5ysh1b2gh2d_720.mp4" },
+    ],
+    images: [],
+  },
+  {
+    id: "scarrs", brand: "Scarr's Pizza", title: "",
+    role: "Design", tags: ["Design"],
+    clients: ["scarrs"],
+    date: "2020-06-01",
+    images: [
+      "https://64.media.tumblr.com/7ee731614167a782f9fe8f57923fcca4/69e58071f2e52a8a-79/s2048x3072/bb5cd124308ff03323f5d77ca0868ad60f844785.jpg",
+      "https://64.media.tumblr.com/658c6d2dfd54017e2f8bf49216ba7a6e/69e58071f2e52a8a-d1/s2048x3072/b4d0fae4b089b24a046301d152f18a1fec6559e8.jpg",
+    ],
+  },
+];
+
+PROJECTS.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+function renderProjects(filter) {
+  const container = document.getElementById('projects-container');
+  container.innerHTML = '';
+  const filtered = filter === 'All' ? PROJECTS : PROJECTS.filter(p => p.tags.includes(filter));
+  filtered.forEach(p => {
+    const totalSlides = p.media ? p.media.length : (p.images.length || (p.placeholders||[]).length);
+    const arrowsHtml = totalSlides > 1 ? `<button class="slide-arrow left" onclick="event.stopPropagation();slideMove(this,-1)">\u2039</button><button class="slide-arrow right" onclick="event.stopPropagation();slideMove(this,1)">\u203a</button><div class="slide-dots"></div>` : '';
+    let slides;
+    if (p.media) {
+      slides = p.media.map((m, i) => {
+        if (m.type === 'video') {
+          return `<div class="slide${i===0?' active':''}"><video style="max-width:100%;max-height:70vh;display:block;margin:0 auto" src="${m.url}" autoplay muted loop playsinline></video>${i===0?arrowsHtml:''}</div>`;
+        }
+        return `<div class="slide${i===0?' active':''}"><img style="max-width:100%;max-height:70vh;display:block;margin:0 auto" src="${m.url}" alt="${p.brand} ${i+1}" loading="lazy">${i===0?arrowsHtml:''}</div>`;
+      }).join('');
+    } else if (p.images.length > 0) {
+      slides = p.images.map((url, i) => `<div class="slide${i===0?' active':''}"><img style="max-width:100%;max-height:70vh;display:block;margin:0 auto" src="${url}" alt="${p.brand} ${i+1}" loading="lazy">${i===0?arrowsHtml:''}</div>`).join('');
+    } else {
+      slides = (p.placeholders||[]).map((c, i) => `<div class="slide${i===0?' active':''}"><div class="slide-placeholder" style="background:${c}">IMG ${i+1}</div>${i===0?arrowsHtml:''}</div>`).join('');
+    }
+    const tags = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+    const titleHtml = p.title ? `<div class="project-title">${p.title}</div>` : '';
+    const year = new Date(p.date).getFullYear();
+    container.insertAdjacentHTML('beforeend', `<div class="project-card" id="project-${p.id}" data-tags="${p.tags.join(',')}">
+      <div class="slideshow" data-current="0">${slides}</div>
+      <div class="project-info"><div class="project-brand">${p.brand}<span class="project-year">${year}</span></div>${titleHtml}<div class="project-tags">${tags}</div></div>
+    </div>`);
+  });
+  initSlideshows();
+  initSwipe();
+}
+</script>
+
+<script>
+// ── Duration calculator ──
+function calcDuration(startStr, endStr) {
+  const [sy, sm] = startStr.split('-').map(Number);
+  let ey, em;
+  if (!endStr) {
+    const now = new Date();
+    ey = now.getFullYear();
+    em = now.getMonth() + 1;
+  } else {
+    [ey, em] = endStr.split('-').map(Number);
+  }
+  let months = (ey - sy) * 12 + (em - sm);
+  if (months < 0) months = 0;
+  const yrs = Math.floor(months / 12);
+  const mos = months % 12;
+  let parts = [];
+  if (yrs > 0) parts.push(yrs + ' yr' + (yrs > 1 ? 's' : ''));
+  if (mos > 0) parts.push(mos + ' mo' + (mos > 1 ? 's' : ''));
+  return parts.join(' ') || '< 1 mo';
+}
+
+function updateDurations() {
+  document.querySelectorAll('.exp-date').forEach(el => {
+    const start = el.dataset.start;
+    const end = el.dataset.end || '';
+    const dur = calcDuration(start, end);
+    const base = el.textContent.split('·')[0].trim();
+    el.textContent = base + ' · ' + dur;
+  });
+}
+
+// ── Tab switching ──
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+  const wrap = document.getElementById('toggleWrap');
+  if (tab === 'portfolio') { wrap.classList.add('portfolio'); } else { wrap.classList.remove('portfolio'); }
+}
+
+// ── Experience toggle ──
+function toggleExp(card) {
+  const bullets = card.querySelector('.exp-bullets');
+  const chevron = card.querySelector('.exp-chevron');
+  bullets.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
+// ── Filter toggle ──
+function toggleFilters() {
+  const wrap = document.querySelector('.filters-wrap');
+  const dropdown = document.getElementById('filters-dropdown');
+  wrap.classList.toggle('open');
+  dropdown.style.display = wrap.classList.contains('open') ? 'flex' : 'none';
+}
+
+// ── Slideshow ──
+function initSlideshows() {
+  document.querySelectorAll('.slideshow').forEach(ss => {
+    const slides = ss.querySelectorAll('.slide');
+    const dotsContainer = ss.querySelector('.slide-dots');
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        dotsContainer.appendChild(dot);
+      });
+    }
+  });
+}
+
+function slideMove(btn, dir) {
+  const ss = btn.closest('.slideshow');
+  const slides = ss.querySelectorAll('.slide');
+  const dots = ss.querySelectorAll('.slide-dot');
+  let current = parseInt(ss.dataset.current) || 0;
+  // Move arrows and dots from old slide to new slide
+  const arrowL = ss.querySelector('.slide-arrow.left');
+  const arrowR = ss.querySelector('.slide-arrow.right');
+  const dotsEl = ss.querySelector('.slide-dots');
+  slides[current].classList.remove('active');
+  if (dots[current]) dots[current].classList.remove('active');
+  current = (current + dir + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  if (dots[current]) dots[current].classList.add('active');
+  ss.dataset.current = current;
+  // Reset videos when leaving a slide
+  const oldSlide = slides[parseInt(ss.dataset.current) || 0];
+  const oldVideo = oldSlide ? oldSlide.querySelector('video') : null;
+  if (oldVideo) { oldVideo.pause(); oldVideo.currentTime = 0; }
+  // Move arrows into new active slide
+  if (arrowL) slides[current].appendChild(arrowL);
+  if (arrowR) slides[current].appendChild(arrowR);
+  if (dotsEl) slides[current].appendChild(dotsEl);
+  // Play video if new slide has one
+  const newVideo = slides[current].querySelector('video');
+  if (newVideo) { newVideo.currentTime = 0; newVideo.play(); }
+}
+
+// ── Filters ──
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-tag').forEach(t => {
+    t.classList.remove('active');
+    const check = t.querySelector('.filter-check');
+    if (check) check.remove();
+  });
+  btn.classList.add('active');
+  const check = document.createElement('span');
+  check.className = 'filter-check';
+  check.innerHTML = '<svg viewBox="0 0 10 10"><path d="M2 5.5L4 7.5L8 3" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  btn.prepend(check);
+  renderProjects(tag);
+}
+
+// ── Scroll to project ──
+function scrollToProject(clientId) {
+  switchTab('portfolio');
+  const allBtn = document.querySelector('.filter-tag[data-filter="All"]');
+  if (allBtn) filterProjects('All', allBtn);
+  const match = PROJECTS.find(p => p.clients && p.clients.includes(clientId));
+  if (!match) return;
+  // Use instant scroll to exact position, then no layout dependency
+  setTimeout(() => {
+    const el = document.getElementById('project-' + match.id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top: y, behavior: 'instant' });
+      // Then smooth-adjust after images settle
+      setTimeout(() => {
+        const y2 = el.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({ top: y2, behavior: 'smooth' });
+      }, 300);
+    }
+  }, 50);
+}
+
+// Init
+renderProjects('All');
+updateDurations();
+
+// ── Touch swipe for slideshows ──
+function initSwipe() {
+  document.querySelectorAll('.slideshow').forEach(ss => {
+    let startX = 0;
+    let startY = 0;
+    let moving = false;
+    ss.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      moving = true;
+    }, { passive: true });
+    ss.addEventListener('touchmove', e => {
+      if (!moving) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+        moving = false;
+        const slides = ss.querySelectorAll('.slide');
+        const dots = ss.querySelectorAll('.slide-dot');
+        let current = parseInt(ss.dataset.current) || 0;
+        slides[current].classList.remove('active');
+        if (dots[current]) dots[current].classList.remove('active');
+        if (dx < 0) {
+          current = (current + 1) % slides.length;
+        } else {
+          current = (current - 1 + slides.length) % slides.length;
+        }
+        slides[current].classList.add('active');
+        if (dots[current]) dots[current].classList.add('active');
+        ss.dataset.current = current;
+      }
+    }, { passive: true });
+    ss.addEventListener('touchend', () => { moving = false; }, { passive: true });
+  });
+}
+
+// ── Scroll-reveal nav ──
+const nav = document.querySelector('.nav');
+const hero = document.querySelector('.hero');
+const btt = document.getElementById('backToTop');
+function checkScroll() {
+  const heroBottom = hero.getBoundingClientRect().bottom;
+  if (heroBottom < 52) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  if (window.scrollY > 400) {
+    btt.classList.add('visible');
+  } else {
+    btt.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', checkScroll, { passive: true });
+checkScroll();
+</script>
+
+</body>
+</html>
