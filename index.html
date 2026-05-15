@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Allen Usubov — Art Direction & Design</title>
 <meta name="description" content="Allen Usubov — Art Director & Designer, New York City">
+<meta property="og:title" content="Allen Usubov">
+<meta property="og:description" content="Art Direction & Design">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://allenusubov.work">
+<meta name="twitter:card" content="summary">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -109,9 +114,15 @@
 
   /* ── Projects ── */
   .project-card { background: var(--card); border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; }
-  .slideshow { position: relative; max-width: 100%; margin: 0 auto; overflow: visible; display: flex; justify-content: center; min-height: 300px; }
-  .slide { display: none; }
-  .slide.active { display: block; position: relative; min-height: 300px; }
+  .slideshow { position: relative; max-width: 100%; margin: 0 auto; overflow: hidden; display: flex; justify-content: center; min-height: 300px; }
+  .slide { display: none; opacity: 0; transition: opacity 0.3s ease; }
+  .slide.active { display: block; position: relative; min-height: 300px; opacity: 1; }
+  .slide.swipe-left { animation: swipeLeft 0.3s ease forwards; }
+  .slide.swipe-right { animation: swipeRight 0.3s ease forwards; }
+  @keyframes swipeLeft { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-40px); opacity: 0; } }
+  @keyframes swipeRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(40px); opacity: 0; } }
+  @keyframes slideInLeft { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  @keyframes slideInRight { from { transform: translateX(-40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   .slide img { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
   .slide video { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; }
   .slide-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 2; transition: background 0.15s; }
@@ -229,7 +240,7 @@
                 <div class="exp-title">Founder / Creative Director</div>
                 <div class="exp-company">Allen®</div>
                 <div class="exp-period"><span class="exp-date" data-start="2022-10" data-end="">Oct 2022 – Present</span></div>
-                <div class="exp-location">New York, New York, United States</div>
+                <div class="exp-location">New York, New York</div>
               </div>
               <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -254,7 +265,7 @@
                 <div class="exp-title">Design Director</div>
                 <div class="exp-company">Sinclair Global</div>
                 <div class="exp-period"><span class="exp-date" data-start="2023-03" data-end="2025-09">Mar 2023 – Sep 2025</span></div>
-                <div class="exp-location">New York, New York, United States</div>
+                <div class="exp-location">New York, New York</div>
               </div>
               <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -282,7 +293,7 @@
                 <div class="exp-title">Design Director</div>
                 <div class="exp-company">Golfwang</div>
                 <div class="exp-period"><span class="exp-date" data-start="2022-01" data-end="2023-03">Jan 2022 – Mar 2023</span></div>
-                <div class="exp-location">Los Angeles, California, United States</div>
+                <div class="exp-location">Los Angeles, California</div>
               </div>
               <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -310,7 +321,7 @@
                 <div class="exp-title">Designer</div>
                 <div class="exp-company">Stray Rats</div>
                 <div class="exp-period"><span class="exp-date" data-start="2018-03" data-end="2022-01">Mar 2018 – Jan 2022</span></div>
-                <div class="exp-location">Miami, Florida, United States</div>
+                <div class="exp-location">New York, New York</div>
               </div>
               <svg class="exp-chevron" width="13" height="13" viewBox="0 0 13 13"><path d="M4.5 2.5L8.5 6.5L4.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -933,19 +944,36 @@ function initSwipe() {
       const dy = e.touches[0].clientY - startY;
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
         moving = false;
+        const dir = dx < 0 ? 1 : -1;
+        const animOut = dx < 0 ? 'swipeLeft' : 'swipeRight';
+        const animIn = dx < 0 ? 'slideInLeft' : 'slideInRight';
         const slides = ss.querySelectorAll('.slide');
         const dots = ss.querySelectorAll('.slide-dot');
+        const arrowL = ss.querySelector('.slide-arrow.left');
+        const arrowR = ss.querySelector('.slide-arrow.right');
+        const dotsEl = ss.querySelector('.slide-dots');
         let current = parseInt(ss.dataset.current) || 0;
-        slides[current].classList.remove('active');
-        if (dots[current]) dots[current].classList.remove('active');
-        if (dx < 0) {
-          current = (current + 1) % slides.length;
-        } else {
-          current = (current - 1 + slides.length) % slides.length;
-        }
-        slides[current].classList.add('active');
-        if (dots[current]) dots[current].classList.add('active');
-        ss.dataset.current = current;
+        const oldSlide = slides[current];
+        const oldVideo = oldSlide ? oldSlide.querySelector('video') : null;
+        if (oldVideo) { oldVideo.pause(); oldVideo.currentTime = 0; }
+        const next = (current + dir + slides.length) % slides.length;
+        // Animate out
+        oldSlide.style.animation = animOut + ' 0.3s ease forwards';
+        setTimeout(() => {
+          oldSlide.classList.remove('active');
+          oldSlide.style.animation = '';
+          if (dots[current]) dots[current].classList.remove('active');
+          slides[next].classList.add('active');
+          slides[next].style.animation = animIn + ' 0.3s ease forwards';
+          if (dots[next]) dots[next].classList.add('active');
+          if (arrowL) slides[next].appendChild(arrowL);
+          if (arrowR) slides[next].appendChild(arrowR);
+          if (dotsEl) slides[next].appendChild(dotsEl);
+          ss.dataset.current = next;
+          const newVideo = slides[next].querySelector('video');
+          if (newVideo) { newVideo.currentTime = 0; newVideo.play(); }
+          setTimeout(() => { slides[next].style.animation = ''; }, 300);
+        }, 250);
       }
     }, { passive: true });
     ss.addEventListener('touchend', () => { moving = false; }, { passive: true });
@@ -963,13 +991,14 @@ function checkScroll() {
   } else {
     nav.classList.remove('scrolled');
   }
-  if (window.scrollY > 400) {
+  if (window.scrollY > 300) {
     btt.classList.add('visible');
   } else {
     btt.classList.remove('visible');
   }
 }
 window.addEventListener('scroll', checkScroll, { passive: true });
+window.addEventListener('touchmove', checkScroll, { passive: true });
 checkScroll();
 </script>
 
