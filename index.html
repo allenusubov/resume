@@ -197,8 +197,8 @@
   <span class="nav-name">Allen Usubov</span>
   <div class="toggle-wrap" id="toggleWrap">
     <div class="toggle-slider"></div>
-    <button class="toggle-btn active" data-tab="resume" onclick="switchTab('resume')">Resume</button>
-    <button class="toggle-btn" data-tab="portfolio" onclick="switchTab('portfolio')">Portfolio</button>
+    <button class="toggle-btn active" data-tab="history" onclick="switchTab('history')">History</button>
+    <button class="toggle-btn" data-tab="work" onclick="switchTab('work')">Work</button>
   </div>
   <span class="nav-email"><a href="mailto:allen@all3n.nyc">allen@all3n.nyc</a></span>
 </nav>
@@ -215,7 +215,7 @@
 <div class="content">
 
   <!-- ══ RESUME ══ -->
-  <div id="tab-resume" class="tab-content active">
+  <div id="tab-history" class="tab-content active">
 
     <div class="section-label">About</div>
     <div class="about-card">
@@ -335,7 +335,7 @@
   </div>
 
   <!-- ══ PORTFOLIO ══ -->
-  <div id="tab-portfolio" class="tab-content">
+  <div id="tab-work" class="tab-content">
 
     <div class="section-title">Selected Clients</div>
     <div class="clients-card">
@@ -853,7 +853,7 @@ function switchTab(tab) {
   document.getElementById('tab-' + tab).classList.add('active');
   document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
   const wrap = document.getElementById('toggleWrap');
-  if (tab === 'portfolio') { wrap.classList.add('portfolio'); } else { wrap.classList.remove('portfolio'); }
+  if (tab === 'work') { wrap.classList.add('portfolio'); } else { wrap.classList.remove('portfolio'); }
 }
 
 // ── Experience toggle ──
@@ -925,7 +925,7 @@ function filterProjects(tag, btn) {
 
 // ── Scroll to project ──
 function scrollToProject(clientId) {
-  switchTab('portfolio');
+  switchTab('work');
   const allBtn = document.querySelector('.filter-tag[data-filter="All"]');
   if (allBtn) filterProjects('All', allBtn);
   const match = PROJECTS.find(p => p.clients && p.clients.includes(clientId));
