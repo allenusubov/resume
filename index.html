@@ -75,6 +75,7 @@ body{position:relative}.theme-toggle{position:absolute;top:0;left:0;right:auto;b
  .gallery-row{margin-bottom:24px}
 }
 
+.project-credit{font-size:inherit;line-height:1.7;margin-top:16px}.project-credit a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -102,7 +103,7 @@ body{position:relative}.theme-toggle{position:absolute;top:0;left:0;right:auto;b
 const PROJECTS = [
   {
     id: "allen-seasonal-campaign", brand: "Allen® Seasonal Campaign",
-    title: "Allen® Shooting Star Hat Campaign",
+    title: "Graphic and hat design for the Allen® Shooting Star Hat, with production management for the custom hats. Casting and retouching the images for the campaign.", photographer: {"name": "Idris Salaam", "url": "https://www.instagram.com/iiddrriisss/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["personal"], date: "2026-06-25",
     images: [
@@ -111,7 +112,7 @@ const PROJECTS = [
     ]
   },
   {
-    id: "puma-sinclair", brand: "Puma / Sinclair Global", title: "Concept, footwear & apparel design for Puma / Sinclair Global collaboration debut during the World Cup.",
+    id: "puma-sinclair", brand: "Puma / Sinclair Global", title: "Graphic, apparel, and footwear design for the Puma / Sinclair Global collaboration for the 2026 World Cup season. Design direction and artwork concept across the collection, with involvement in product development throughout each round of sampling.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["puma", "sinclair"],
     date: "2026-01-15",
@@ -127,7 +128,7 @@ const PROJECTS = [
     images: [],
   },
   {
-    id: "converse-byyou-2", brand: "Converse / Golfwang: Converse By You", title: "Concept & footwear design for Converse / Golfwang CBY part 2 collaboration.",
+    id: "converse-byyou-2", brand: "Converse / Golfwang: Converse By You", title: "Graphic design and color palette development for the second Golfwang edition of Converse By You, with original artwork and color options for customers to customize their shoes. Art direction for the campaign photoshoot, including image editing and retouching.", photographer: {"name": "Zamar Velez", "url": "https://www.instagram.com/zamarvelez/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["converse", "golfwang"],
     date: "2022-11-01",
@@ -150,7 +151,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "converse-byyou", brand: "Converse / Golfwang: Converse By You", title: "Concept & footwear design for Converse / Golfwang CBY part 1 collaboration.",
+    id: "converse-byyou", brand: "Converse / Golfwang: Converse By You", title: "Graphic design and color palette development for the first Golfwang edition of Converse By You, with original artwork and color options for customers to customize their shoes. Art direction for the campaign photoshoot, including image editing and retouching.", photographer: {"name": "Zamar Velez", "url": "https://www.instagram.com/zamarvelez/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["converse", "golfwang"],
     date: "2022-08-01",
@@ -170,7 +171,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "golfwang-racing", brand: "Golfwang Racing Editorial", title: "Concept & apparel design for Golfwang seasonal collection.",
+    id: "golfwang-racing", brand: "Golfwang Racing Editorial", title: "Design direction across apparel and graphics for the Golfwang seasonal collection. Styling and art direction for the editorial shoot, translating the collection into campaign imagery through image editing and retouching.", photographer: {"name": "Zamar Velez", "url": "https://www.instagram.com/zamarvelez/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["golfwang"],
     date: "2022-06-15",
@@ -187,7 +188,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "golfwang-basics", brand: "Golfwang Basics", title: "Concept & apparel design for Golfwang seasonal collection.",
+    id: "golfwang-basics", brand: "Golfwang Basics", title: "Design direction across apparel and graphics for the Golfwang seasonal collection. Styling and art direction for the editorial shoot, translating the collection into campaign imagery through image editing and retouching.", photographer: {"name": "Zamar Velez", "url": "https://www.instagram.com/zamarvelez/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["golfwang"],
     date: "2022-04-01",
@@ -199,7 +200,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "ebbets-allen", brand: "Ebbets Field Flannels / Allen\u00ae", title: "Art direction & design for Allen® hat with Ebbet's Field Flannels.",
+    id: "ebbets-allen", brand: "Ebbets Field Flannels / Allen\u00ae", title: "Graphic and hat design for the Ebbets Field Flannels / Allen® collaboration, with production management for the custom hats.",
     role: "Design", tags: ["Design"],
     clients: ["personal"],
     date: "2023-05-01",
@@ -208,7 +209,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "newera-allen", brand: "New Era / Allen\u00ae", title: "Art direction & design for Allen® fitted hat.",
+    id: "newera-allen", brand: "New Era / Allen\u00ae", title: "Graphic and hat design for the Allen® New Era fitted, with production management for the custom hats. Art direction, casting, photography, and retouching the images for the campaign.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["personal"],
     date: "2024-03-01",
@@ -217,7 +218,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-ss25", brand: "Sinclair Global Lookbook", title: "Art direction & apparel design for Sinclair Global seasonal collection.",
+    id: "sinclair-lookbook-ss25", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-06-01",
@@ -229,7 +230,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "trojan-sinclair", brand: "Trojan / Sinclair Global", title: "Apparel & accessory design for Trojan / Sinclair Global in support of the G.O.A.T. launch at Complexcon 2025.",
+    id: "trojan-sinclair", brand: "Trojan / Sinclair Global", title: "Graphic, apparel, and accessory design for the Trojan / Sinclair Global collaboration in support of the G.O.A.T. launch at ComplexCon 2025. Original artwork and product design within Trojan’s brand guidelines, incorporating its visual identity throughout the collection.",
     role: "Design", tags: ["Design"],
     clients: ["trojan", "sinclair"],
     date: "2025-11-01",
@@ -241,7 +242,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-jan25", brand: "Sinclair Global Lookbook", title: "Concept & apparel design for Sinclair Global seasonal collection.",
+    id: "sinclair-lookbook-jan25", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2025-01-15",
@@ -252,7 +253,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-dec24", brand: "Sinclair Global Lookbook", title: "Concept & apparel design for Sinclair Global seasonal collection.",
+    id: "sinclair-lookbook-dec24", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-12-01",
@@ -263,7 +264,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-jan24", brand: "Sinclair Global Lookbook", title: "Concept & apparel design for Sinclair Global seasonal collection.",
+    id: "sinclair-lookbook-jan24", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-01-15",
@@ -274,7 +275,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-dec23", brand: "Sinclair Global Lookbook", title: "Concept & apparel design for Sinclair Global seasonal collection.",
+    id: "sinclair-lookbook-dec23", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2023-12-01",
@@ -285,7 +286,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "golfwang-lookbook-fw22", brand: "Golfwang Lookbook", title: "Concept & apparel design for Golfwang seasonal collection.",
+    id: "golfwang-lookbook-fw22", brand: "Golfwang Lookbook", title: "Design direction across apparel and graphics for the Golfwang seasonal collection, leading the design team from concept through collection development. Styling and art direction for the lookbook shoot, with image editing and retouching.", photographer: {"name": "Luis “Panch” Perez", "url": "https://www.instagram.com/luisperezdop/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["golfwang"],
     date: "2022-09-15",
@@ -297,7 +298,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook", brand: "Sinclair Global Lookbook", title: "Concept & apparel design for Sinclair Global seasonal collection.",
+    id: "sinclair-lookbook", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2025-03-01",
@@ -308,7 +309,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sp5der", brand: "SP5DER / ComplexCon", title: "Design for Sp5der booth for Cactuscon, curated by Travis Scott.",
+    id: "sp5der", brand: "SP5DER / ComplexCon", title: "Booth concept design and initial rendering for SP5DER at CactusCon, curated by Travis Scott as part of ComplexCon 2024.",
     role: "Spaces, Design", tags: ["Spatial Design", "Design"],
     clients: ["sp5der"],
     date: "2024-11-01",
@@ -319,7 +320,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sonic-strayrats", brand: "Sonic The Hedgehog / Stray Rats Part 2", title: "Apparel design for Sonic / Stray Rats part 2 collection.",
+    id: "sonic-strayrats", brand: "Sonic The Hedgehog / Stray Rats Part 2", title: "Graphic and apparel design for the Sonic the Hedgehog / Stray Rats collaboration. Technical packs for manufacturing, with design updates and refinements throughout each stage of sampling.",
     role: "Design", tags: ["Design"],
     clients: ["sonic", "strayrats"],
     date: "2021-12-01",
@@ -331,7 +332,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sonic-strayrats-1", brand: "Sonic The Hedgehog / Stray Rats Part 1", title: "Apparel design for Sonic / Stray Rats part 1 collection.",
+    id: "sonic-strayrats-1", brand: "Sonic The Hedgehog / Stray Rats Part 1", title: "Graphic and apparel design for the Sonic the Hedgehog / Stray Rats collaboration. Technical packs for manufacturing, with design updates and refinements throughout each stage of sampling.",
     role: "Design", tags: ["Design"],
     clients: ["sonic", "strayrats"],
     date: "2021-07-01",
@@ -344,7 +345,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "maharishi-strayrats", brand: "Maharishi / Stray Rats", title: "Art direction & design for Maharishi / Stray Rats Year of the Rat collaboration.",
+    id: "maharishi-strayrats", brand: "Maharishi / Stray Rats", title: "Graphic and apparel design for the Maharishi / Stray Rats Year of the Rat collaboration. Technical packs for manufacturing, design updates throughout sampling, and art direction for the campaign shoot.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["maharishi", "strayrats"],
     date: "2021-09-03",
@@ -359,7 +360,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "golfwang-store", brand: "Golfwang New York Flagship", title: "Design for the Golfwang New York City Flagship store.",
+    id: "golfwang-store", brand: "Golfwang New York Flagship", title: "Spatial design for Golfwang’s New York flagship in the former Opening Ceremony space in SoHo. An extension of the Los Angeles store’s visual identity, adapted across two levels with custom fixtures and furnishings. Design and renderings for both floors, including the staircase, seating, and displays.",
     role: "Spaces, Design", tags: ["Spatial Design", "Design"],
     clients: ["golfwang"],
     date: "2023-02-01",
@@ -373,7 +374,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "converse-golfwang", brand: "Converse / Golfwang", title: "Concept & design for Converse / Golfwang collaboration.",
+    id: "converse-golfwang", brand: "Converse / Golfwang", title: "Art direction and concept development for the Converse / Golfwang campaign shoot, with retouching of the final images.", photographer: {"name": "Troy Quick", "url": "https://www.instagram.com/semtexer/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["converse", "golfwang"],
     date: "2022-05-01",
@@ -384,7 +385,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "golfwang-lookbook-ss22", brand: "Golfwang Lookbook", title: "Concept & apparel design for Golfwang seasonal collection.",
+    id: "golfwang-lookbook-ss22", brand: "Golfwang Lookbook", title: "Design direction across apparel and graphics for the Golfwang seasonal collection, leading the design team from concept through collection development. Styling and art direction for the lookbook shoot, with image editing and retouching.", photographer: {"name": "Luis “Panch” Perez", "url": "https://www.instagram.com/luisperezdop/"},
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["golfwang"],
     date: "2022-03-15",
@@ -405,7 +406,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "calvinklein", brand: "Calvin Klein", title: "Photography & direction for Calvin Klein editorial.",
+    id: "calvinklein", brand: "Calvin Klein", title: "Photography for the Calvin Klein editorial.",
     role: "Photography", tags: ["Photography"],
     clients: ["calvinklein"],
     date: "2022-03-01",
@@ -421,7 +422,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "calvinklein-hp", brand: "Calvin Klein / Heron Preston", title: "Photography & direction for Calvin Klein / Heron Preston collaboration editorial.",
+    id: "calvinklein-hp", brand: "Calvin Klein / Heron Preston", title: "Photography for the Calvin Klein / Heron Preston collaboration editorial.",
     role: "Photography", tags: ["Photography"],
     clients: ["calvinklein"],
     date: "2021-11-01",
@@ -432,7 +433,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "newbalance-strayrats", brand: "New Balance / Stray Rats 574", title: "Design for New Balance / Stray Rats 574 collection.",
+    id: "newbalance-strayrats", brand: "New Balance / Stray Rats 574", title: "Graphic design for the packaging of the New Balance / Stray Rats 574 collaboration.",
     role: "Design", tags: ["Design"],
     clients: ["newbalance", "strayrats"],
     date: "2021-01-01",
@@ -442,7 +443,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "carhartt-strayrats", brand: "Carhartt WIP / Stray Rats", title: "Apparel design for Carhartt WIP / Stray Rats collaboration.",
+    id: "carhartt-strayrats", brand: "Carhartt WIP / Stray Rats", title: "Graphic and apparel design for the Carhartt WIP / Stray Rats collaboration, including custom trims, hangtags, and labels. Design updates and refinements throughout sampling.",
     role: "Design", tags: ["Design"],
     clients: ["carhartt", "strayrats"],
     date: "2020-12-01",
@@ -453,7 +454,7 @@ const PROJECTS = [
     images: [],
   },
   {
-    id: "scarrs", brand: "Scarr's Pizza", title: "Apparel design for Scarr's Pizza merch.",
+    id: "scarrs", brand: "Scarr's Pizza", title: "Original graphic artwork for Scarr’s Pizza’s in-house merchandise.",
     role: "Design", tags: ["Design"],
     clients: ["scarrs"],
     date: "2020-06-01",
@@ -737,7 +738,7 @@ function groupProjectMedia(landscapes,videoCover=false,mobile=false){
 }
 function renderProject(p){
  const media=mediaFor(p);
- $('project-view').innerHTML=`<div class="project-toolbar"><a class="back-link" href="${escapeHTML(workRoute)}">← Work</a></div><h1 class="post-title">${escapeHTML(p.brand)}</h1><div class="project-sequence"><div class="gallery">${media.map((m,i)=>`<figure class="gallery-figure"><div class="gallery-media">${m.type==='video'?videoHTML(p,m,i):`<img src="${escapeHTML(m.url)}" alt="${escapeHTML(p.brand)} — ${escapeHTML(p.title)} Image ${i+1} of ${media.length}." loading="${i<2?'eager':'lazy'}" decoding="async">`}</div></figure>`).join('')}</div><section class="project-details" aria-label="Project details"><div><p class="project-deck">${escapeHTML(p.title)}</p></div><div class="project-meta-row"><p class="project-date">${yearFor(p)}</p><nav class="project-tags" aria-label="Project categories">${projectTags(p).map(tag=>`<a href="#work?filter=${encodeURIComponent(tag)}">${escapeHTML(displayRole(tag))}</a>`).join('')}</nav></div></section></div>`;
+ $('project-view').innerHTML=`<div class="project-toolbar"><a class="back-link" href="${escapeHTML(workRoute)}">← Work</a></div><h1 class="post-title">${escapeHTML(p.brand)}</h1><div class="project-sequence"><div class="gallery">${media.map((m,i)=>`<figure class="gallery-figure"><div class="gallery-media">${m.type==='video'?videoHTML(p,m,i):`<img src="${escapeHTML(m.url)}" alt="${escapeHTML(p.brand)} — ${escapeHTML(p.title)} Image ${i+1} of ${media.length}." loading="${i<2?'eager':'lazy'}" decoding="async">`}</div></figure>`).join('')}</div><section class="project-details" aria-label="Project details"><div><p class="project-deck">${escapeHTML(p.title)}</p>${p.photographer?`<p class="project-credit">Photography by <a href="${escapeHTML(p.photographer.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(p.photographer.name)}</a>.</p>`:''}</div><div class="project-meta-row"><p class="project-date">${yearFor(p)}</p><nav class="project-tags" aria-label="Project categories">${projectTags(p).map(tag=>`<a href="#work?filter=${encodeURIComponent(tag)}">${escapeHTML(displayRole(tag))}</a>`).join('')}</nav></div></section></div>`;
  const sequence=$('project-view').querySelector('.project-sequence');
  const figures=[...sequence.querySelectorAll('figure')];
  const details=sequence.querySelector('.project-details');
