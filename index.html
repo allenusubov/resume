@@ -75,7 +75,7 @@ body{position:relative}.theme-toggle{position:absolute;top:0;left:0;right:auto;b
  .gallery-row{margin-bottom:24px}
 }
 
-.project-credit{font-size:inherit;line-height:1.7;margin-top:16px}.project-credit a:hover{color:var(--accent)}
+.project-credit{margin-top:16px}.project-credit a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -218,7 +218,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-ss25", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-ss25", photographer: {"name": "Garrett Bruce", "url": "https://www.instagram.com/garrettbruce/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-06-01",
@@ -242,7 +242,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-jan25", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-jan25", photographer: {"name": "Julius Frazer", "url": "https://www.instagram.com/juliusmfrazer/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2025-01-15",
@@ -264,7 +264,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-jan24", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-jan24", photographer: {"name": "Garrett Bruce", "url": "https://www.instagram.com/garrettbruce/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-01-15",
@@ -275,7 +275,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-dec23", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-dec23", photographer: {"name": "Stephen Pompée", "url": "https://www.instagram.com/pompeeraw/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2023-12-01",
@@ -738,7 +738,7 @@ function groupProjectMedia(landscapes,videoCover=false,mobile=false){
 }
 function renderProject(p){
  const media=mediaFor(p);
- $('project-view').innerHTML=`<div class="project-toolbar"><a class="back-link" href="${escapeHTML(workRoute)}">← Work</a></div><h1 class="post-title">${escapeHTML(p.brand)}</h1><div class="project-sequence"><div class="gallery">${media.map((m,i)=>`<figure class="gallery-figure"><div class="gallery-media">${m.type==='video'?videoHTML(p,m,i):`<img src="${escapeHTML(m.url)}" alt="${escapeHTML(p.brand)} — ${escapeHTML(p.title)} Image ${i+1} of ${media.length}." loading="${i<2?'eager':'lazy'}" decoding="async">`}</div></figure>`).join('')}</div><section class="project-details" aria-label="Project details"><div><p class="project-deck">${escapeHTML(p.title)}</p>${p.photographer?`<p class="project-credit">Photography by <a href="${escapeHTML(p.photographer.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(p.photographer.name)}</a>.</p>`:''}</div><div class="project-meta-row"><p class="project-date">${yearFor(p)}</p><nav class="project-tags" aria-label="Project categories">${projectTags(p).map(tag=>`<a href="#work?filter=${encodeURIComponent(tag)}">${escapeHTML(displayRole(tag))}</a>`).join('')}</nav></div></section></div>`;
+ $('project-view').innerHTML=`<div class="project-toolbar"><a class="back-link" href="${escapeHTML(workRoute)}">← Work</a></div><h1 class="post-title">${escapeHTML(p.brand)}</h1><div class="project-sequence"><div class="gallery">${media.map((m,i)=>`<figure class="gallery-figure"><div class="gallery-media">${m.type==='video'?videoHTML(p,m,i):`<img src="${escapeHTML(m.url)}" alt="${escapeHTML(p.brand)} — ${escapeHTML(p.title)} Image ${i+1} of ${media.length}." loading="${i<2?'eager':'lazy'}" decoding="async">`}</div></figure>`).join('')}</div><section class="project-details" aria-label="Project details"><div><p class="project-deck">${escapeHTML(p.title)}</p>${p.photographer?`<p class="project-deck project-credit">Photography by <a href="${escapeHTML(p.photographer.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(p.photographer.name)}</a>.</p>`:''}</div><div class="project-meta-row"><p class="project-date">${yearFor(p)}</p><nav class="project-tags" aria-label="Project categories">${projectTags(p).map(tag=>`<a href="#work?filter=${encodeURIComponent(tag)}">${escapeHTML(displayRole(tag))}</a>`).join('')}</nav></div></section></div>`;
  const sequence=$('project-view').querySelector('.project-sequence');
  const figures=[...sequence.querySelectorAll('figure')];
  const details=sequence.querySelector('.project-details');
