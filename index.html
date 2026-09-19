@@ -106,6 +106,12 @@ body{position:relative}.theme-toggle{position:absolute;top:0;left:0;right:auto;b
 .client-viewport{touch-action:pan-y pinch-zoom;cursor:grab;user-select:none;-webkit-user-select:none;scroll-behavior:auto}
 .client-viewport.is-dragging,.client-viewport.is-dragging a{cursor:grabbing}
 .client-link img{-webkit-user-drag:none;user-select:none}
+@media(max-width:760px){
+ .project-card{padding:0}
+ .project-preview .cover{height:auto;min-height:0}
+ .project-preview .cover>img,.project-preview .cover>video{width:auto;height:auto;max-width:100%;max-height:calc(100svh - 210px)}
+ .project-caption{padding-top:10px}
+}
 </style>
 </head>
 <body>
@@ -248,7 +254,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-ss25", photographer: {"name": "Garrett Bruce", "url": "https://www.instagram.com/garrettbruce/"}, brand: "Sinclair Global Lookbook 02", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-ss25", photographer: {"name": "Garrett Bruce", "url": "https://www.instagram.com/garrettbruce/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-06-01",
@@ -272,7 +278,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-jan25", photographer: {"name": "Julius Frazer", "url": "https://www.instagram.com/juliusmfrazer/"}, brand: "Sinclair Global Lookbook 01", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-jan25", photographer: {"name": "Julius Frazer", "url": "https://www.instagram.com/juliusmfrazer/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2025-01-15",
@@ -283,7 +289,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-dec24", brand: "Sinclair Global Lookbook 03", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-dec24", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-12-01",
@@ -294,7 +300,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-jan24", photographer: {"name": "Garrett Bruce", "url": "https://www.instagram.com/garrettbruce/"}, brand: "Sinclair Global Lookbook 01", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-jan24", photographer: {"name": "Garrett Bruce", "url": "https://www.instagram.com/garrettbruce/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2024-01-15",
@@ -305,7 +311,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-dec23", photographer: {"name": "Stephen Pompée", "url": "https://www.instagram.com/pompeeraw/"}, brand: "Sinclair Global Lookbook 01", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-dec23", photographer: {"name": "Stephen Pompée", "url": "https://www.instagram.com/pompeeraw/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2023-12-01",
@@ -328,7 +334,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook", brand: "Sinclair Global Lookbook 02", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook", brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2025-03-01",
