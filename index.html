@@ -112,6 +112,25 @@ body{position:relative}.theme-toggle{position:absolute;top:0;left:0;right:auto;b
  .project-preview .cover>img,.project-preview .cover>video{width:auto;height:auto;max-width:100%;max-height:calc(100svh - 210px)}
  .project-caption{padding-top:10px}
 }
+
+/* Center experience and align mobile metadata to shared rows. */
+#experience{margin-inline:auto}
+.job-toggle{grid-template-columns:56px minmax(0,1fr) auto 20px;gap:20px}
+.job-logo{width:56px;height:56px}
+.job-logo img{width:100%;height:100%;object-fit:contain}
+.job-body ul{margin-left:76px}
+@media(max-width:760px){
+ .job-toggle{grid-template-columns:44px minmax(0,1fr) auto 14px;column-gap:10px;row-gap:3px;align-items:start}
+ .job-logo{width:44px;height:44px;grid-column:1;grid-row:1 / 4}
+ .job-identity,.job-meta{display:contents}
+ .job-company{grid-column:2;grid-row:1;min-width:0;font-size:14px;line-height:1.5}
+ .job-title{grid-column:2;grid-row:2 / 4;margin-top:0;min-width:0;font-size:12px;line-height:1.5}
+ .job-meta>span{grid-column:3;justify-self:end;text-align:right;white-space:nowrap;color:var(--sub);font-size:11px;line-height:1.5}
+ .job-meta>span:nth-child(1){grid-row:1}
+ .job-meta>span:nth-child(2){grid-row:2}
+ .job-meta>span:nth-child(3){grid-row:3}
+ .job-body ul{margin-left:0;padding-left:18px}
+}
 </style>
 </head>
 <body>
@@ -139,6 +158,7 @@ body{position:relative}.theme-toggle{position:absolute;top:0;left:0;right:auto;b
 const PROJECTS = [
 {
   "id": "hirshleifers-sinclair",
+  "soloCover": true,
   "brand": "Hirshleifers / Sinclair Global",
   "title": "Graphic and apparel design for a special capsule collaboration between Sinclair Global and iconic boutique Hirshleifers. Original graphics developed for the capsule and applied across the apparel collection.",
   "role": "Graphic, Apparel",
@@ -357,7 +377,7 @@ const PROJECTS = [
     ],
   },
   {
-    id: "sinclair-lookbook-dec23", photographer: {"name": "Stephen Pompée", "url": "https://www.instagram.com/pompeeraw/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
+    id: "sinclair-lookbook-dec23", soloCover: true, photographer: {"name": "Stephen Pompée", "url": "https://www.instagram.com/pompeeraw/"}, brand: "Sinclair Global Lookbook", title: "Graphic and apparel design for the Sinclair Global seasonal collection. Art direction, casting, and styling for the lookbook, extending the collection’s visual identity into the campaign imagery.",
     role: "Art Direction, Design", tags: ["Art Direction", "Design"],
     clients: ["sinclair"],
     date: "2023-12-01",
@@ -803,7 +823,7 @@ function duration(start,end){
 }
 function renderHistory(){
  $('about').textContent=RESUME.about;
- $('experience').innerHTML=RESUME.experience.map((job,i)=>`<section class="job"><h3><button class="job-toggle" aria-expanded="false" aria-controls="job-${i}" id="job-toggle-${i}"><span class="job-logo"><img src="${escapeHTML(job.logo)}" alt="" loading="lazy"></span><span><span class="job-company">${escapeHTML(job.company)}</span><span class="job-title">${escapeHTML(job.title)}</span></span><span class="job-meta"><span>${escapeHTML(job.period)}</span><span>${escapeHTML(duration(job.start,job.end))}</span><span>${escapeHTML(job.location)}</span></span><span class="job-plus" aria-hidden="true">+</span></button></h3><div class="job-body" id="job-${i}" role="region" aria-labelledby="job-toggle-${i}" aria-hidden="true"><ul>${job.bullets.map(b=>`<li>${escapeHTML(b)}</li>`).join('')}</ul></div></section>`).join('');
+ $('experience').innerHTML=RESUME.experience.map((job,i)=>`<section class="job"><h3><button class="job-toggle" aria-expanded="false" aria-controls="job-${i}" id="job-toggle-${i}"><span class="job-logo"><img src="${escapeHTML(job.logo)}" alt="" loading="lazy"></span><span class="job-identity"><span class="job-company">${escapeHTML(job.company)}</span><span class="job-title">${escapeHTML(job.title)}</span></span><span class="job-meta"><span>${escapeHTML(job.period)}</span><span>${escapeHTML(duration(job.start,job.end))}</span><span>${escapeHTML(job.location)}</span></span><span class="job-plus" aria-hidden="true">+</span></button></h3><div class="job-body" id="job-${i}" role="region" aria-labelledby="job-toggle-${i}" aria-hidden="true"><ul>${job.bullets.map(b=>`<li>${escapeHTML(b)}</li>`).join('')}</ul></div></section>`).join('');
 }
 function renderClients(){
  const monochrome=new Set(['sinclair','calvinklein','puma','carhartt','sp5der']);
